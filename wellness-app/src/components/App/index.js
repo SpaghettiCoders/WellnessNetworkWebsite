@@ -14,6 +14,8 @@ import AdminPage from '../Admin';
 import { AuthUserContext } from '../Session';
 import * as ROUTES from '../../constants/routes';
 import { withFirebase } from '../Firebase';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 class App extends Component {
     constructor(props) {
