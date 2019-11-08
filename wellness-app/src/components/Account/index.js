@@ -1,9 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import * as ROUTES from '../../constants/routes';
-const Account = () => (
+import { PasswordForgetForm } from '../PasswordForget';
+import PasswordChangeForm from '../PasswordChange';
+const AccountPage = () => (
     <div>
-        ACCOUNT
+        <h1>Account Page</h1>
+        <PasswordForgetForm />
+        <PasswordChangeForm />
     </div>
 );
-export default Account;
+export default AccountPage;
