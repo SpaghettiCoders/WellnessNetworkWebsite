@@ -72,9 +72,17 @@ const NavigationAuth = () => (
           <li className="nav-item">
             <Link
               className="nav-link text-black text-uppercase ml-5"
-              to={ROUTES.LANDING}
+              to={ROUTES.ACCOUNT}
             >
-              Personal
+              Account
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+                className="nav-link text-black text-uppercase ml-5"
+                to={ROUTES.ADMIN}
+            >
+              Admin
             </Link>
           </li>
         </ul>
