@@ -7,5 +7,5 @@ const HomePage = () => (
     </div>
 );
 const condition = authUser => !!authUser;
-export default HomePage;
-//export default withAuthorization(condition)(HomePage);
+//export default HomePage;
+export default withAuthorization(condition)(HomePage);
