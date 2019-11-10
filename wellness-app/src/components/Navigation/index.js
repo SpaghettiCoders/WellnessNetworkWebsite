@@ -7,16 +7,9 @@ import logo from './logo.jpg'
 
 
 const Navigation = ({ authUser }) => (
-    <div>
-        <AuthUserContext.Consumer>
-            {authUser =>
-                authUser ? <NavigationAuth/> : <NavigationNonAuth/>
-            }
-    </AuthUserContext.Consumer>
-    </div>
+    <div>{authUser ? <NavigationAuth /> : <NavigationNonAuth />}</div>
 );
 const NavigationAuth = () => (
-  
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <a className="navbar-brand ml-5" href="#">
         <img src={logo} alt="logo" style={{ width: '50px' }} />
@@ -109,7 +102,6 @@ const NavigationAuth = () => (
         </form>
       </div>
     </nav>
-
 );
 const NavigationNonAuth = () => (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
