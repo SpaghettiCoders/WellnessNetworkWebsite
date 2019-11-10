@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
+
 class AdminPage extends Component {
     constructor(props) {
         super(props);
@@ -8,9 +9,7 @@ class AdminPage extends Component {
             users: [],
         };
     }
-    componentWillUnmount() {
-        this.props.firebase.users().off();
-    }
+
     componentDidMount() {
         this.setState({ loading: true });
         this.props.firebase.users().on('value', snapshot => {
@@ -22,10 +21,14 @@ class AdminPage extends Component {
             this.setState({
                 users: usersList,
                 loading: false,
-
             });
         });
     }
+    componentWillUnmount() {
+        this.props.firebase.users().off();
+    }
+
+  
     render() {
         const { users, loading } = this.state;
         return (

@@ -9,8 +9,34 @@ import HomePage from '../Home';
 import AccountPage from '../Account';
 import AdminPage from '../Admin';
 import * as ROUTES from '../../constants/routes';
+
+import { withFirebase } from '../Firebase';
 import { withAuthentication } from '../Session';
-const App = () => (
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            authUser: null,
+        };
+    }
+    componentDidMount() {
+
+        this.props.firebase.auth.onAuthStateChanged(authUser => {
+            authUser
+                ? this.setState({ authUser })
+                : this.setState({ authUser: null });
+            },
+        );
+    }
+    componentWillUnmount() {
+        this.listener();
+    }
+
+    render() {
+        return (
     <Router>
         <div>
             <Navigation />
@@ -27,5 +53,8 @@ const App = () => (
             <Route path={ROUTES.ADMIN} component={AdminPage} />
         </div>
     </Router>
-);
-export default withAuthentication(App);
+        );
+    }
+}
+
+export default withFirebase(App);
