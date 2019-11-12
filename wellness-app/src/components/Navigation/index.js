@@ -6,8 +6,16 @@ import * as ROUTES from '../../constants/routes';
 import logo from './logo.jpg'
 
 
-const Navigation = ({ authUser }) => (
-    <div>{authUser ? <NavigationAuth /> : <NavigationNonAuth />}</div>
+// const Navigation = ({ authUser }) => (
+//     <div>{authUser ? <NavigationAuth /> : <NavigationNonAuth />}</div>
+// );
+const Navigation = () => (
+  <div>
+    <AuthUserContext.Consumer>
+      {authUser => authUser ? <NavigationAuth /> :            <NavigationNonAuth />
+      }
+    </AuthUserContext.Consumer>
+  </div>
 );
 const NavigationAuth = () => (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
