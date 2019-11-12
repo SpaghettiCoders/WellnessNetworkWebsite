@@ -93,6 +93,9 @@ const NavigationAuth = () => (
               Admin
             </Link>
           </li>
+          <li>
+            <SignOutButton />
+          </li>
         </ul>
         <form className="form-inline my-2 my-lg-0">
           <input
