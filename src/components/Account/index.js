@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { PasswordForgetForm } from '../PasswordForget';
 import PasswordChangeForm from '../PasswordChange';
-import firebase from "firebase";
+import firebase, {firestore} from "firebase";
 import FileUploader from "react-firebase-file-uploader";
 
 class Account extends Component {
