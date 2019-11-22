@@ -18,7 +18,7 @@ const Navigation = () => (
   </div>
 );
 const NavigationAuth = () => (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light shadow">
       <a className="navbar-brand ml-5" href="#">
         <img src={logo} alt="logo" style={{ width: '50px' }} />
       </a>
@@ -115,7 +115,7 @@ const NavigationAuth = () => (
     </nav>
 );
 const NavigationNonAuth = () => (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light shadow">
       <a className="navbar-brand ml-5" href="#">
         <img src={logo} alt="logo" style={{ width: '50px' }} />
       </a>
