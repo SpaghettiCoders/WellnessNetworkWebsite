@@ -31,6 +31,14 @@ class Firebase {
     doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
     doPasswordUpdate = password =>
         this.auth.currentUser.updatePassword(password);
+    doDeleteUser = () => {
+        var user = this.auth().currentUser;
+        user.delete().then(function() {
+            console.log("User deleted.");
+        }).catch(function(error) {
+            console.log("Error deleting user.")
+        });
+    };
 
     // *** User API ***
     user = uid => this.db.ref(`users/${uid}`);
