@@ -28,6 +28,9 @@ class AdminPage extends Component {
     componentWillUnmount() {
         this.props.firebase.users().off();
     }
+    deleteUser() {
+        this.props.firebase.doDeleteUser();
+    }
     render() {
         const { users, loading } = this.state;
         return (
@@ -35,6 +38,9 @@ class AdminPage extends Component {
                 <h1>Admin</h1>
                 {loading && <div>Loading ...</div>}
                 <UserList users={users} />
+                <button onClick={() =>  this.deleteUser()}>
+                    Dummy
+                </button>
             </div>
         );
     }
