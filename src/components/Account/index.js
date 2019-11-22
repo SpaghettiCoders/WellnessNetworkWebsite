@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { PasswordForgetForm } from '../PasswordForget';
 import PasswordChangeForm from '../PasswordChange';
-import firebase from "firebase";
+import firebase, {firestore} from "firebase";
 import FileUploader from "react-firebase-file-uploader";
+import { AuthUserContext, withAuthorization } from '../Session';
 
 class Account extends Component {
     state = {
@@ -49,5 +50,6 @@ class Account extends Component {
         );
     }
 }
-
-export default Account;
+const condition = authUser => !!authUser;
+export default withAuthorization(condition)(Account);
+//export default Account;
