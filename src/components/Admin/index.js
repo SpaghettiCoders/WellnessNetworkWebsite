@@ -28,6 +28,7 @@ class AdminPage extends Component {
     componentWillUnmount() {
         this.props.firebase.users().off();
     }
+
     deleteUser() {
         this.props.firebase.doDeleteUser();
     }
