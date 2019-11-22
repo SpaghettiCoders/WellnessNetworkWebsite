@@ -23,11 +23,17 @@ class Account extends Component {
         this.setState({ avatar: filename, progress: 100, isUploading: false });
         firebase
             .storage()
-            .ref("images")
+            .ref("audio")
             .child(filename)
             .getDownloadURL()
             .then(url => this.setState({ avatarURL: url }));
+
+
+        firebase.database().ref('files/' + filename.substr(0,filename.indexOf('.'))).set({
+            userID: firebase.auth().currentUser.uid,
+        });
     };
+
 
     render() {
         return (
@@ -36,10 +42,10 @@ class Account extends Component {
                     <PasswordForgetForm/>
                     <PasswordChangeForm/>
                     <FileUploader
-                        accept="image/*"
+                        accept="audio/*"
                         name="avatar"
                         randomizeFilename
-                        storageRef={firebase.storage().ref("images")}
+                        storageRef={firebase.storage().ref("audio")}
                         onUploadStart={this.handleUploadStart}
                         onUploadError={this.handleUploadError}
                         onUploadSuccess={this.handleUploadSuccess}
