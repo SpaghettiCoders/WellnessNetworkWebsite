@@ -54,6 +54,7 @@ class SignInFormBase extends Component {
                     placeholder="Email Address"
                 />
                 </div>
+                <div className="form-group">
                 <input className="form-control"
                     name="password"
                     value={password}
@@ -61,9 +62,12 @@ class SignInFormBase extends Component {
                     type="password"
                     placeholder="Password"
                 />
+                </div>
+                <div className="form-group">
                 <button disabled={isInvalid} type="submit" className="btn btn-primary">
                     Sign In
                 </button>
+                </div>
                 {error && <p>{error.message}</p>}
                 
             </form>
