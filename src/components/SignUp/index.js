@@ -103,9 +103,11 @@ class SignUpFormBase extends Component {
                     placeholder="Confirm Password"
                 />
                 </div>
+                <div className="form-group">
                 <button disabled={isInvalid} type="submit" className="btn btn-primary">
                     Sign Up
                 </button>
+                </div>
                 {error && <p>{error.message}</p>}
             </form>
         );
