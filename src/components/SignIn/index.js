@@ -6,7 +6,7 @@ import { PasswordForgetLink } from '../PasswordForget';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 const SignInPage = () => (
-    <div>
+    <div className = "col-md-6 col-centered text-md-center">
         <h1>SignIn</h1>
         <SignInForm />
         <PasswordForgetLink />
@@ -40,35 +40,50 @@ class SignInFormBase extends Component {
         this.setState({ [event.target.name]: event.target.value });
     };
     render() {
+
         const { email, password, error } = this.state;
         const isInvalid = password === '' || email === '';
         return (
             <form onSubmit={this.onSubmit}>
-                <input
+            <div className="form-group">
+                <input className="form-control" 
                     name="email"
                     value={email}
                     onChange={this.onChange}
                     type="text"
                     placeholder="Email Address"
                 />
-                <input
+                </div>
+                <div className="form-group">
+                <input className="form-control"
                     name="password"
                     value={password}
                     onChange={this.onChange}
                     type="password"
                     placeholder="Password"
                 />
-                <button disabled={isInvalid} type="submit">
+                </div>
+                <div className="form-group">
+                <button disabled={isInvalid} type="submit" className="btn btn-primary">
                     Sign In
                 </button>
+                </div>
                 {error && <p>{error.message}</p>}
+                
             </form>
         );
     }
 }
+
+
+
+
 const SignInForm = compose(
     withRouter,
     withFirebase,
 )(SignInFormBase);
 export default SignInPage;
 export { SignInForm };
+
+
+
