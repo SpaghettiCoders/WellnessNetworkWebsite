@@ -15,6 +15,7 @@ const config = {
 };
 
 class Firebase {
+    //Comment
     constructor() {
         app.initializeApp(config);
         this.auth = app.auth();
