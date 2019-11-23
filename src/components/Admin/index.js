@@ -32,16 +32,37 @@ class AdminPage extends Component {
     deleteUser() {
         this.props.firebase.doDeleteUser();
     }
+
+    printValue(id) {
+        var uid = document.getElementById("userFormInput").value;
+        this.props.firebase.doDeleteUser(uid);
+    }
+
     render() {
         const { users, loading } = this.state;
         return (
             <div>
-                <h1>Admin</h1>
-                {loading && <div>Loading ...</div>}
-                <UserList users={users} />
-                <button onClick={() =>  this.deleteUser()}>
-                    Dummy
-                </button>
+                <div>
+                    <h1>Admin</h1>
+                    {loading && <div>Loading ...</div>}
+                    <UserList users={users} />
+                </div>
+                <div>
+                    <h2> Selected User</h2>
+                    <form>
+                        <input id = "userFormInput"
+                            type="search"
+                            placeholder="User ID"
+                            aria-label="Search"
+                        />
+                    </form>
+                    <button onClick={() =>  this.deleteUser()}>
+                        Delete User
+                    </button>
+                    <button onClick={() => this.printValue()}>
+                        PrintValue
+                    </button>
+                </div>
             </div>
         );
     }
