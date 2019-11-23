@@ -1,7 +1,6 @@
 import app from 'firebase/app'
 import 'firebase/auth';
 import 'firebase/database';
-import * as admin from 'firebase-admin';
 
 
 //FireBase config
@@ -42,7 +41,10 @@ class Firebase {
             console.log("Error deleting user.")
         });
     };
+
     doDeleteUser = (uid) => {
+        var userRef = this.auth().database().ref('users');
+        userRef.on('value')
         try {
             this.auth().deleteUser(uid)
                 .then(function() {
