@@ -32,9 +32,11 @@ class Firebase {
     doPasswordUpdate = password =>
         this.auth.currentUser.updatePassword(password);
     doDeleteUser = () => {
+
         var user = this.auth.currentUser;
         console.log(user);
         this.auth.signOut();
+
         user.delete().then(function() {
             console.log("User deleted.");
         }).catch(function(error) {
