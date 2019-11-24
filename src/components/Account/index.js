@@ -4,6 +4,7 @@ import PasswordChangeForm from '../PasswordChange';
 import firebase, {firestore} from "firebase";
 import FileUploader from "react-firebase-file-uploader";
 import { AuthUserContext, withAuthorization } from '../Session';
+import PodcastRequest from "../PodcastRequest";
 
 class Account extends Component {
     state = {
@@ -51,6 +52,7 @@ class Account extends Component {
                         onUploadSuccess={this.handleUploadSuccess}
                         onProgress={this.handleProgress}
                     />
+                    <PodcastRequest/>
                 </form>
             </div>
         );
