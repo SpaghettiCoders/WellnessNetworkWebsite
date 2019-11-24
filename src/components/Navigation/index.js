@@ -15,10 +15,12 @@ import logo from './logo.jpg'
 
 const Navigation = () => (
   <div>
+  <div className="form-group">
     <AuthUserContext.Consumer>
       {authUser => authUser ? <NavigationAuth /> :            <NavigationNonAuth />
       }
     </AuthUserContext.Consumer>
+  </div>
   </div>
 );
 
@@ -57,11 +59,11 @@ const NavigationNonAuth = () => (
     <nav className="navbar navbar-expand-lg navbar-light bg-light shadow">
       <div class="container">
       <a class="navbar-brand" href={ROUTES.LANDING}>Home</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" >
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" >
         <span class="navbar-toggler-icon">
         </span>
       </button>
-      <div class="collapse navbar-collapse" id="myNavbar">
+      <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
             <a class="nav-link" href="#">Home
