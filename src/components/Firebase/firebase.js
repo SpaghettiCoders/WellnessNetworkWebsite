@@ -1,6 +1,7 @@
 import app from 'firebase/app'
 import 'firebase/auth';
 import 'firebase/database';
+import * as admin from 'firebase-admin';
 
 
 //FireBase config
@@ -42,6 +43,17 @@ class Firebase {
         }).catch(function(error) {
             console.log("Error deleting user.")
         });
+    };
+    doDeleteUser = (uid) => {
+        try {
+            this.auth().deleteUser(uid)
+                .then(function() {
+                    console.log('Successfully deleted user');
+                })
+        }
+        catch (error) {
+            console.log('Error deleting user:', error);
+        }
     };
 
     // *** User API ***
