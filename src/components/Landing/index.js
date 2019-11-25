@@ -5,8 +5,8 @@ import pic from './generic-headshot.png'
 import logo from './logo.jpg'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Particles from "react-particles-js";
-import background from "./template.jpg"
-
+import background from "./template.png"
+import kam from "./pamela_koons.jpg"
 const Landing = () => (
       
    
@@ -120,8 +120,8 @@ const Landing = () => (
         "particles_nb": 4
       }
     }
-  },
-  "retina_detect": true
+  }
+  
 
                 
               }}
@@ -131,7 +131,13 @@ const Landing = () => (
                 
               }}
             />
-<img src={background} className="img-fluid navbar-expand-lg" alt="Responsive image" style={{flex:1}}/>
+
+<img src={background} className="img-fluid img-responsive" alt="Responsive image" style={{flex:1}}/>
+ <div class="carousel-caption">
+              <h1>At the Wellness Network</h1>
+              <h3>Radio TV</h3>
+              <h5>Our goal at At The WELLnessRadioTV is to enlighten viewers and listeners by bringing them stories and advice from global leaders in health, wellness and holistic living. We will save lives and bring back a quality of life by promoting emotional and physical wellbeing.</h5>
+              </div>
 </div>
 
 <div class="container jumbotron text-center">
@@ -151,10 +157,10 @@ sweet, but not too short so folks don't simply skip over it entirely.</p>
 
 
 <div className="row">
-<div className="col-md-3">
-              <div className="card mb-4 box-shadow" style={{width: 180}}>
+<div className="col-md-4">
+              <div className="card mb-4 box-shadow">
               <div className="card-body shadow">
-               <img className="card-img-top" src={pic} alt="Thumbnail [100%x225]" />
+               <img className="card-img-top" src={kam} alt="Thumbnail [100%x225]" />
                   <p className="card-text">This is a wider card with supporting text.</p>
                   <div className="d-flex justify-content-between align-items-center">
                     <div className="btn-group">
@@ -168,28 +174,10 @@ sweet, but not too short so folks don't simply skip over it entirely.</p>
             </div>
 
 
-<div className="col-md-3">
-              <div className="card mb-4 box-shadow" style={{width: 180}}>
+<div className="col-md-4">
+              <div className="card mb-4 box-shadow">
               <div className="card-body shadow">
-               <img className="card-img-top" src={pic} alt="Thumbnail [100%x225]" />
-                  <p className="card-text">This is a wider card with supporting text.</p>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <div className="btn-group">
-                      <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                      
-                    </div>
-                    <small className="text-muted">9 mins</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-
-            <div className="col-md-3">
-              <div className="card mb-4 box-shadow" style={{width: 180}}>
-              <div className="card-body shadow">
-               <img className="card-img-top" src={pic} alt="Thumbnail [100%x225]" />
+               <img className="card-img-top" src={kam} alt="Thumbnail [100%x225]" />
                   <p className="card-text">This is a wider card with supporting text.</p>
                   <div className="d-flex justify-content-between align-items-center">
                     <div className="btn-group">
@@ -204,11 +192,29 @@ sweet, but not too short so folks don't simply skip over it entirely.</p>
 
 
 
-
-            <div className="col-md-3">
-              <div className="card mb-4 box-shadow" style={{width: 180}}>
+            <div className="col-md-4">
+              <div className="card mb-4 box-shadow">
               <div className="card-body shadow">
-               <img className="card-img-top" src={pic} alt="Thumbnail [100%x225]" />
+               <img className="card-img-top" src={kam} alt="Thumbnail [100%x225]" />
+                  <p className="card-text">This is a wider card with supporting text.</p>
+                  <div className="d-flex justify-content-between align-items-center">
+                    <div className="btn-group">
+                      <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
+                      
+                    </div>
+                    <small className="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <div className="col-md-4">
+              <div className="card mb-4 box-shadow">
+              <div className="card-body shadow">
+               <img className="card-img-top" src={kam} alt="Thumbnail [100%x225]" />
                   <p className="card-text">This is a wider card with supporting text.</p>
                   <div className="d-flex justify-content-between align-items-center">
                     <div className="btn-group">
