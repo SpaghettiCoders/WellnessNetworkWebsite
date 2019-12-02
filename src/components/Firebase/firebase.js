@@ -1,6 +1,7 @@
 import app from 'firebase/app'
 import 'firebase/auth';
 import 'firebase/database';
+import * as admin from 'firebase-admin';
 
 
 //FireBase config
@@ -31,6 +32,29 @@ class Firebase {
     doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
     doPasswordUpdate = password =>
         this.auth.currentUser.updatePassword(password);
+    doDeleteUser = () => {
+
+        var user = this.auth.currentUser;
+        console.log(user);
+        this.auth.signOut();
+
+        user.delete().then(function() {
+            console.log("User deleted.");
+        }).catch(function(error) {
+            console.log("Error deleting user.")
+        });
+    };
+    doDeleteUser = (uid) => {
+        try {
+            this.auth().deleteUser(uid)
+                .then(function() {
+                    console.log('Successfully deleted user');
+                })
+        }
+        catch (error) {
+            console.log('Error deleting user:', error);
+        }
+    };
 
     // *** User API ***
     user = uid => this.db.ref(`users/${uid}`);

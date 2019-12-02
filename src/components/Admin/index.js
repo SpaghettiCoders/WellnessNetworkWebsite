@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
 import NewsletterEditor from '../NewsletterEditor';
+import {withAuthorization} from "../Session";
 
 
 class AdminPage extends Component {
@@ -28,6 +29,16 @@ class AdminPage extends Component {
     componentWillUnmount() {
         this.props.firebase.users().off();
     }
+
+    deleteUser() {
+        this.props.firebase.doDeleteUser();
+    }
+
+    printValue(id) {
+        var uid = document.getElementById("userFormInput").value;
+        this.props.firebase.doDeleteUser(uid);
+    }
+
     render() {
         const { users, loading } = this.state;
         return (
@@ -36,6 +47,27 @@ class AdminPage extends Component {
                 {loading && <div>Loading ...</div>}
                 <UserList users={users} />
                 <NewsletterEditor />
+                <div>
+                    <h1>Admin</h1>
+                    {loading && <div>Loading ...</div>}
+                    <UserList users={users} />
+                </div>
+                <div>
+                    <h2> Selected User</h2>
+                    <form>
+                        <input id = "userFormInput"
+                            type="search"
+                            placeholder="User ID"
+                            aria-label="Search"
+                        />
+                    </form>
+                    <button onClick={() =>  this.deleteUser()}>
+                        Delete User
+                    </button>
+                    <button onClick={() => this.printValue()}>
+                        PrintValue
+                    </button>
+                </div>
             </div>
         );
     }
@@ -57,4 +89,6 @@ const UserList = ({ users }) => (
         ))}
     </ul>
 );
-export default withFirebase(AdminPage);
+const condition = authUser => !!authUser;
+export default withAuthorization(condition)(withFirebase(AdminPage));
+//export default withFirebase(AdminPage);

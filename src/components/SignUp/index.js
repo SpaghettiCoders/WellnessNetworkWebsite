@@ -5,7 +5,7 @@ import { compose } from 'recompose';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 const SignUpPage = () => (
-    <div>
+    <div className = "col-centered col-md-6 text-md-center">
         <h1>SignUp</h1>
          <SignUpForm />
     </div>
@@ -23,7 +23,6 @@ class SignUpFormBase extends Component {
     constructor(props) {
         super(props);
         this.state = { ...INITIAL_STATE };
-        //this.props.history.push(ROUTES.HOME);             //<----- This line redirect to Home all the time. How to fix it?????
     }
     onSubmit = event => {
         const { username, email, passwordOne } = this.state;
@@ -36,6 +35,7 @@ class SignUpFormBase extends Component {
                     .set({
                         username,
                         email,
+                        isAdmin: 0
                     });
             })
             .then(authUser => {
@@ -57,7 +57,6 @@ class SignUpFormBase extends Component {
             passwordTwo,
             error,
         } = this.state;
-
         const isInvalid =
             passwordOne !== passwordTwo ||
             passwordOne === '' ||
@@ -66,37 +65,48 @@ class SignUpFormBase extends Component {
 
         return (
             <form onSubmit={this.onSubmit}>
-                <input
+
+            <div className="form-group">
+                <input className="form-control"
                     name="username"
                     value={username}
                     onChange={this.onChange}
                     type="text"
                     placeholder="Full Name"
                 />
-                <input
+                </div>
+                <div className="form-group">
+                <input className="form-control"
                     name="email"
                     value={email}
                     onChange={this.onChange}
                     type="text"
                     placeholder="Email Address"
                 />
-                <input
+                </div>
+                <div className="form-group">
+                <input className="form-control"
                     name="passwordOne"
                     value={passwordOne}
                     onChange={this.onChange}
                     type="password"
                     placeholder="Password"
                 />
-                <input
+                </div>
+                <div className="form-group">
+                <input className="form-control"
                     name="passwordTwo"
                     value={passwordTwo}
                     onChange={this.onChange}
                     type="password"
                     placeholder="Confirm Password"
                 />
-                <button disabled={isInvalid} type="submit">
+                </div>
+                <div className="form-group">
+                <button disabled={isInvalid} type="submit" className="btn btn-primary">
                     Sign Up
                 </button>
+                </div>
                 {error && <p>{error.message}</p>}
             </form>
         );
