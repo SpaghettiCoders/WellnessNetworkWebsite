@@ -59,26 +59,11 @@ class Firebase{
         });
     };
 
-    doDeleteUser = (uid) => {
-        var elements =  this.getElementsByUserID('requests', 'xxx123');
-        console.log(elements);
-        /*
-        this.db.ref('users/xxxx').set({
-            email: 'xxxxx@123321.com',
-            username : 'xxxx'
-        });
-        */
-        /*
-        try {
-            this.auth().deleteUser(uid)
-                .then(function() {
-                    console.log('Successfully deleted user');
-                })
-        }
-        catch (error) {
-            console.log('Error deleting user:', error);
-        }
-         */
+    doTest = () => {
+        //var elements = this.getElementsByUserID('requests', 'xxx123');
+        //console.log(elements);
+
+        //this.insertNewsLetters('Content', 'Data','Link', 'Title');
     };
 
     //Data
@@ -118,16 +103,19 @@ class Firebase{
     }
 
     getElementsByUserID = (path, userID) => {
-        var result = [];
+        var data = [];
         var ref = this.db.ref(path);
         ref.on('value',function (snapshot) {
             snapshot.forEach(function (childSnapshot){
                 if(childSnapshot.val().userID == userID) {
-                    result.push(childSnapshot.val());
+                    data.push({
+                        uid:childSnapshot.key,
+                        value:childSnapshot.val()
+                    });
                 }
             });
         });
-        return result;
+        return data;
     }
 
     // *** User API ***

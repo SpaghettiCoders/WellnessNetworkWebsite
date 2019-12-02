@@ -9,8 +9,11 @@ class AdminPage extends Component {
         this.state = {
             loading: false,
             users: [],
+            userRequest: [],
+            userFiles: [],
         };
     }
+
     componentDidMount() {
         this.setState({ loading: true });
         this.props.firebase.users().on('value', snapshot => {
@@ -19,6 +22,7 @@ class AdminPage extends Component {
                 ...usersObject[key],
                 uid: key,
             }));
+
             this.setState({
                 users: usersList,
                 loading: false,
@@ -29,17 +33,37 @@ class AdminPage extends Component {
         this.props.firebase.users().off();
     }
 
+    /*
+    <button onClick={() =>  this.deleteUser()}>
+        Delete User
+     </button>
+     */
     deleteUser() {
         this.props.firebase.doDeleteUser();
     }
 
-    printValue(id) {
+    getUserRequests(uid) {
+        const elementsRaw = this.props.firebase.getElementsByUserID('requests', uid);
+        this.setState({
+            userRequest: elementsRaw,
+        })
+    }
+
+    getUserFiles(uid) {
+        const elementsRaw = this.props.firebase.getElementsByUserID('files', uid);
+        this.setState({
+            userFiles: elementsRaw,
+        })
+    }
+
+    getUserInformation() {
         var uid = document.getElementById("userFormInput").value;
-        this.props.firebase.doDeleteUser(uid);
+        this.getUserRequests(uid);
+        this.getUserFiles(uid);
     }
 
     render() {
-        const { users, loading } = this.state;
+        const { users, loading , userRequest, userFiles} = this.state;
         return (
             <div>
                 <div>
@@ -56,12 +80,18 @@ class AdminPage extends Component {
                             aria-label="Search"
                         />
                     </form>
-                    <button onClick={() =>  this.deleteUser()}>
-                        Delete User
+                    <button onClick={() => this.getUserInformation()}>
+                        GET INFORMATION
                     </button>
-                    <button onClick={() => this.printValue()}>
-                        PrintValue
-                    </button>
+                </div>
+                <div>
+                    <h2>User Requests</h2>
+                    <UserRequest requests={userRequest} />
+                </div>
+
+                <div>
+                    <h2>User Files</h2>
+                    <UserFiles files={userFiles} />
                 </div>
             </div>
         );
@@ -84,6 +114,55 @@ const UserList = ({ users }) => (
         ))}
     </ul>
 );
+
+const UserRequest = ({requests}) => (
+    <ul>
+        {requests.map(request => (
+            <li key={request.uid}>
+                <strong>RequestID: </strong>
+                {request.uid}
+                <ul>
+                    <li>
+                        <strong>Description: </strong>
+                        {request.value.description}
+                    </li>
+                    <li>
+                        <strong>File: </strong>
+                        {request.value.file}
+                    </li>
+                    <li>
+                        <strong>Name: </strong>
+                        {request.value.name}
+                    </li>
+                    <li>
+                        <strong>UserID: </strong>
+                        {request.value.userID}
+                    </li>
+
+                </ul>
+            </li>
+
+        ))}
+    </ul>
+);
+
+const UserFiles = ({files}) => (
+    <ul>
+        {files.map(file => (
+            <li key={file.uid}>
+                <strong>FileID:</strong>
+                {file.uid}
+                <ul>
+                    <li>
+                        <strong>UserID: </strong>
+                        {file.value.userID}
+                    </li>
+                </ul>
+            </li>
+        ))}
+    </ul>
+);
+
 const condition = authUser => !!authUser;
 export default withAuthorization(condition)(withFirebase(AdminPage));
 //export default withFirebase(AdminPage);
