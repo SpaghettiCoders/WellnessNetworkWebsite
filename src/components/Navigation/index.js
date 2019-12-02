@@ -26,7 +26,7 @@ const Navigation = () => (
 const NavigationAuth = () => (
     <nav className="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
       <div class="container">
-      <a class="navbar-brand" href={ROUTES.LANDING}>Home</a>
+      <a class="navbar-brand" href={ROUTES.LANDING}><img src={logo} width="70" height="40"/></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" >
         <span class="navbar-toggler-icon">
         </span>
@@ -56,7 +56,7 @@ const NavigationAuth = () => (
 const NavigationNonAuth = () => (
     <nav className="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
       <div class="container">
-      <a class="navbar-brand" href={ROUTES.LANDING}>Home</a>
+      <a class="navbar-brand" href={ROUTES.LANDING}><img src={logo} width="70" height="40"/></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" >
         <span class="navbar-toggler-icon">
         </span>
