@@ -23,7 +23,6 @@ class SignUpFormBase extends Component {
     constructor(props) {
         super(props);
         this.state = { ...INITIAL_STATE };
-        //this.props.history.push(ROUTES.HOME);             //<----- This line redirect to Home all the time. How to fix it?????
     }
     onSubmit = event => {
         const { username, email, passwordOne } = this.state;
@@ -36,6 +35,7 @@ class SignUpFormBase extends Component {
                     .set({
                         username,
                         email,
+                        isAdmin: 0
                     });
             })
             .then(authUser => {
@@ -57,7 +57,6 @@ class SignUpFormBase extends Component {
             passwordTwo,
             error,
         } = this.state;
-
         const isInvalid =
             passwordOne !== passwordTwo ||
             passwordOne === '' ||
