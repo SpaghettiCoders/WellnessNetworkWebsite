@@ -35,6 +35,7 @@ class SignUpFormBase extends Component {
                     .set({
                         username,
                         email,
+                        isAdmin: 0
                     });
             })
             .then(authUser => {
