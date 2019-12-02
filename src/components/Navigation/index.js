@@ -15,18 +15,16 @@ import logo from './logo.jpg'
 
 const Navigation = () => (
   <div>
-  <div className="form-group">
     <AuthUserContext.Consumer>
       {authUser => authUser ? <NavigationAuth /> :            <NavigationNonAuth />
       }
     </AuthUserContext.Consumer>
   </div>
-  </div>
 );
 
 
 const NavigationAuth = () => (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light shadow">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
       <div class="container">
       <a class="navbar-brand" href={ROUTES.LANDING}>Home</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" >
@@ -56,14 +54,14 @@ const NavigationAuth = () => (
     </nav>
 );
 const NavigationNonAuth = () => (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light shadow">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
       <div class="container">
       <a class="navbar-brand" href={ROUTES.LANDING}>Home</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" >
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" >
         <span class="navbar-toggler-icon">
         </span>
       </button>
-      <div class="collapse navbar-collapse">
+      <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
             <a class="nav-link" href="#">Home
