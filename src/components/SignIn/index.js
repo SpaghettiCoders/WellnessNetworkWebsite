@@ -5,16 +5,28 @@ import { SignUpLink } from '../SignUp';
 import { PasswordForgetLink } from '../PasswordForget';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import background from "./test.jpg"
 const SignInPage = () => (
-    <div className = "col-md-6 col-centered text-md-center">
-    <div className="container-fluid shadow rounded container-centered">
+
+    <div className="img-fluid col-md-12 img-fluid"style={sectionStyle}>
+    <div className = "col-centered col-md-12 text-md-center ">
+    <h1></h1>
         <h1>SignIn</h1>
         <SignInForm />
-        <PasswordForgetLink />
-        <SignUpLink />
+        
+    
     </div>
     </div>
 );
+
+var sectionStyle = {
+   backgroundImage: `url(${background})`,
+   height: "665px",
+   width: "100%",
+   backgroundSize: "contain"
+
+}
+
 const INITIAL_STATE = {
     email: '',
     password: '',
@@ -46,6 +58,9 @@ class SignInFormBase extends Component {
         const { email, password, error } = this.state;
         const isInvalid = password === '' || email === '';
         return (
+            <div className="container">
+            <div className="card card-1 shadow col-md-6" >
+            <h1>SignIn</h1>
             <form onSubmit={this.onSubmit}>
             <div className="form-group">
                 <input className="form-control" 
@@ -73,6 +88,10 @@ class SignInFormBase extends Component {
                 {error && <p>{error.message}</p>}
                 
             </form>
+            <PasswordForgetLink />
+        <SignUpLink />
+            </div>
+            </div>
         );
     }
 }
