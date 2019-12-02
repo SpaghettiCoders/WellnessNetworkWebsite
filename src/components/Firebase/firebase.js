@@ -48,7 +48,6 @@ class Firebase{
     doPasswordUpdate = password =>
         this.auth.currentUser.updatePassword(password);
     doDeleteUser = () => {
-
         var user = this.auth.currentUser;
         console.log(user);
         this.auth.signOut();
@@ -61,9 +60,8 @@ class Firebase{
     };
 
     doDeleteUser = (uid) => {
-
-        //this.insertRequest('desc', 'fff', 'Name1', '123321');
-        this.deleteRequest('-Lv32ZI2qNLHxw5QNsU0');
+        var elements =  this.getElementsByUserID('requests', 'xxx123');
+        console.log(elements);
         /*
         this.db.ref('users/xxxx').set({
             email: 'xxxxx@123321.com',
@@ -83,7 +81,15 @@ class Firebase{
          */
     };
 
-    //Information Handle
+    //Data
+
+    deleteElement = (path, elementID) => {
+        try {
+            this.db.ref(path).child(elementID).remove();
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     insertRequest = (description, file, name, userID) => {
         this.db.ref('requests').push({
@@ -95,13 +101,34 @@ class Firebase{
     }
 
     deleteRequest = (requestID) => {
-        try {
-            this.db.ref('requests').child(requestID).remove();
-        } catch (error) {
-            console.log(error);
-        }
+        this.deleteElement('requests', requestID);
     }
 
+    insertNewsLetters = (content, data, linked_video, title) => {
+        this.db.ref('newsletters').push({
+            content: content,
+            data: data,
+            linked_video: linked_video,
+            title: title
+        });
+    }
+
+    deleteNewsLetters = (newsLetterID) => {
+        this.deleteElement('newsletters',newsLetterID );
+    }
+
+    getElementsByUserID = (path, userID) => {
+        var result = [];
+        var ref = this.db.ref(path);
+        ref.on('value',function (snapshot) {
+            snapshot.forEach(function (childSnapshot){
+                if(childSnapshot.val().userID == userID) {
+                    result.push(childSnapshot.val());
+                }
+            });
+        });
+        return result;
+    }
 
     // *** User API ***
     user = uid => this.db.ref(`users/${uid}`);
