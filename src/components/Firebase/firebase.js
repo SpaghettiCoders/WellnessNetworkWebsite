@@ -1,6 +1,7 @@
 import app from 'firebase/app'
 import 'firebase/auth';
 import 'firebase/database';
+import {database} from "firebase";
 
 
 //FireBase config
@@ -14,7 +15,21 @@ const config = {
       appId: "1:671256703093:web:3f4a8271dab69a0983883c"
 };
 
-class Firebase {
+/*
+var admin = require("firebase-admin");
+
+
+var serviceAccount = require("./wellness-network-website-firebase-adminsdk-rymfd-2db6ae4219");
+
+console.log('LOADING TIME:', process.env.FIREBASE_CONFIG);
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://wellness-network-website.firebaseio.com"
+});
+*/
+
+class Firebase{
     //Comment
     constructor() {
         app.initializeApp(config);
@@ -46,8 +61,16 @@ class Firebase {
     };
 
     doDeleteUser = (uid) => {
-        var userRef = this.auth().database().ref('users');
-        userRef.on('value')
+
+        //this.insertRequest('desc', 'fff', 'Name1', '123321');
+        this.deleteRequest('-Lv32ZI2qNLHxw5QNsU0');
+        /*
+        this.db.ref('users/xxxx').set({
+            email: 'xxxxx@123321.com',
+            username : 'xxxx'
+        });
+        */
+        /*
         try {
             this.auth().deleteUser(uid)
                 .then(function() {
@@ -57,7 +80,28 @@ class Firebase {
         catch (error) {
             console.log('Error deleting user:', error);
         }
+         */
     };
+
+    //Information Handle
+
+    insertRequest = (description, file, name, userID) => {
+        this.db.ref('requests').push({
+            description: description,
+            file: file,
+            name: name,
+            userID: userID
+        });
+    }
+
+    deleteRequest = (requestID) => {
+        try {
+            this.db.ref('requests').child(requestID).remove();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
 
     // *** User API ***
     user = uid => this.db.ref(`users/${uid}`);
