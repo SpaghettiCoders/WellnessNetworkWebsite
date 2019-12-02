@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
+import NewsletterEditor from '../NewsletterEditor';
 
 
 class AdminPage extends Component {
@@ -34,6 +35,7 @@ class AdminPage extends Component {
                 <h1>Admin</h1>
                 {loading && <div>Loading ...</div>}
                 <UserList users={users} />
+                <NewsletterEditor />
             </div>
         );
     }
