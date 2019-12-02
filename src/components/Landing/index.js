@@ -1,42 +1,240 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
+import pic from './generic-headshot.png'
+import logo from './logo.jpg'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Particles from "react-particles-js";
+import background from "./template.png"
+import kam from "./pamela_koons.jpg"
 const Landing = () => (
-    <div>
-    <div className="col-md-4">
-    	<div className="container">
+      
+   
+      
 
-    		<div className="row">
+<div>
+<div>
+<Particles 
+              params={{
+                
+  "particles": {
+    "number": {
+      "value": 20,
+      "density": {
+        "enable": true,
+        "value_area": 800
+      }
+    },
+    "color": {
+      "value": "#ffffff"
+    },
+    "shape": {
+      "type": "circle",
+      "stroke": {
+        "width": 0,
+        "color": "#000000"
+      },
+      "polygon": {
+        "nb_sides": 5
+      },
+      "image": {
+        "src": "img/github.svg",
+        "width": 100,
+        "height": 100
+      }
+    },
+    "opacity": {
+      "value": 0.5,
+      "random": false,
+      "anim": {
+        "enable": false,
+        "speed": 1,
+        "opacity_min": 0.1,
+        "sync": false
+      }
+    },
+    "size": {
+      "value": 3,
+      "random": true,
+      "anim": {
+        "enable": false,
+        "speed": 80,
+        "size_min": 0.1,
+        "sync": false
+      }
+    },
+    "line_linked": {
+      "enable": true,
+      "distance": 300,
+      "color": "#ffffff",
+      "opacity": 0.4,
+      "width": 2
+    },
+    "move": {
+      "enable": true,
+      "speed": 6,
+      "direction": "none",
+      "random": false,
+      "straight": false,
+      "out_mode": "out",
+      "bounce": false,
+      "attract": {
+        "enable": false,
+        "rotateX": 600,
+        "rotateY": 1200
+      }
+    }
+  },
+  "interactivity": {
+    "detect_on": "canvas",
+    "events": {
+      "onhover": {
+        "enable": true,
+        "mode": "grab"
+      },
+      "onclick": {
+        "enable": false,
+        "mode": "push"
+      },
+      "resize": true
+    },
+    "modes": {
+      "grab": {
+        "distance": 800,
+        "line_linked": {
+          "opacity": 1
+        }
+      },
+      "bubble": {
+        "distance": 800,
+        "size": 80,
+        "duration": 2,
+        "opacity": 0.8,
+        "speed": 3
+      },
+      "repulse": {
+        "distance": 400,
+        "duration": 0.4
+      },
+      "push": {
+        "particles_nb": 4
+      }
+    }
+  }
+  
 
-    		<div className="col-md-8">
-       			 <h1 className="my-4">Page Heading
-          <small>Secondary Text</small>
-        </h1>
+                
+              }}
+              style={{
+                width: '100%',
+                position: "absolute"
+                
+              }}
+            />
 
-        
-        <div className="card mb-4">
-          <img className="card-img-top" src="http://placehold.it/750x300" alt="Card image cap"/>
-          <div className="card-body">
-            <h2 className="card-title">Post Title</h2>
-            <p className="card-text">Lorem ipsum dolor sit amet, consectetur
- adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis 
-soluta, a laboriosam. Dicta expedita corporis animi vero voluptate 
-voluptatibus possimus, veniam magni quis!</p>
-            <a href="#" className="btn btn-primary">Read More →</a>
-          </div>
-          <div className="card-footer text-muted">
-            Posted on January 1, 2017 by
-            <a href="#">Start Bootstrap</a>
-          </div>
-        </div>
-
-
-
+<img src={background} className="img-fluid img-responsive" alt="Responsive image" style={{flex:1}}/>
+ <div class="carousel-caption">
+              <h1>At the Wellness Network</h1>
+              <h3>Radio TV</h3>
+              <h5>Our goal at At The WELLnessRadioTV is to enlighten viewers and listeners by bringing them stories and advice from global leaders in health, wellness and holistic living. We will save lives and bring back a quality of life by promoting emotional and physical wellbeing.</h5>
+              </div>
 </div>
 
+<div class="container jumbotron text-center">
+
+
+
+
+          <h1 class="jumbotron-heading">Podcasters</h1>
+          <p class="lead text-muted">Something short and leading about 
+the collection below—its contents, the creator, etc. Make it short and 
+sweet, but not too short so folks don't simply skip over it entirely.</p>
+          <p>
+            <a href="#" class="btn btn-primary my-2">Main call to action</a>
+            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+          </p>
         </div>
-       		</div>
-       	</div>
-    </div>
+
+
+<div className="row">
+<div className="col-md-4">
+              <div className="card mb-4 box-shadow">
+              <div className="card-body shadow">
+               <img className="card-img-top" src={kam} alt="Thumbnail [100%x225]" />
+                  <p className="card-text">This is a wider card with supporting text.</p>
+                  <div className="d-flex justify-content-between align-items-center">
+                    <div className="btn-group">
+                      <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
+                      
+                    </div>
+                    <small className="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+<div className="col-md-4">
+              <div className="card mb-4 box-shadow">
+              <div className="card-body shadow">
+               <img className="card-img-top" src={kam} alt="Thumbnail [100%x225]" />
+                  <p className="card-text">This is a wider card with supporting text.</p>
+                  <div className="d-flex justify-content-between align-items-center">
+                    <div className="btn-group">
+                      <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
+                      
+                    </div>
+                    <small className="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div className="col-md-4">
+              <div className="card mb-4 box-shadow">
+              <div className="card-body shadow">
+               <img className="card-img-top" src={kam} alt="Thumbnail [100%x225]" />
+                  <p className="card-text">This is a wider card with supporting text.</p>
+                  <div className="d-flex justify-content-between align-items-center">
+                    <div className="btn-group">
+                      <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
+                      
+                    </div>
+                    <small className="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <div className="col-md-4">
+              <div className="card mb-4 box-shadow">
+              <div className="card-body shadow">
+               <img className="card-img-top" src={kam} alt="Thumbnail [100%x225]" />
+                  <p className="card-text">This is a wider card with supporting text.</p>
+                  <div className="d-flex justify-content-between align-items-center">
+                    <div className="btn-group">
+                      <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
+                      
+                    </div>
+                    <small className="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            </div>
+
+
+            </div>
+
+
+    
 );
 export default Landing;
