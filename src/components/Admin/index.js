@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
-import NewsletterEditor from '../NewsletterEditor';
 import {withAuthorization} from "../Session";
 import background from "./back.png"
+import NewsletterEditor from "../NewsletterEditor"
 
 class AdminPage extends Component {
     constructor(props) {
@@ -107,11 +107,7 @@ class AdminPage extends Component {
                 </div>
                
                 </div>
-                <div>
-                    <h2>User Files</h2>
-                    <UserFiles files={userFiles} />
-                </div>
-                </div>
+
                 <div>
                 <br/>
 
