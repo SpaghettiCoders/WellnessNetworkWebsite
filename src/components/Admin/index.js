@@ -16,21 +16,6 @@ class AdminPage extends Component {
     }
 
     componentDidMount() {
-        /*
-        this.setState({loading: true});
-        this.props.firebase.users().on('value', snapshot => {
-            const usersObject = snapshot.val();
-            const usersList = Object.keys(usersObject).map(key => ({
-                ...usersObject[key],
-                uid: key,
-            }));
-
-            this.setState({
-                users: usersList,
-                loading: false,
-            });
-        })
-         */
         this.setState({
             loading: false,
         });
@@ -102,115 +87,69 @@ class AdminPage extends Component {
             backgroundImage: `url(${background})`,
             height: "665px",
             width: "100%",
-            backgroundSize: "contain"
+            backgroundSize: "contain",
 
         }
 
         const ListStyle = {
-            maxHeight: "300px"
+            maxHeight: "300px",
         }
 
         const {users,requests, loading, userRequest, userFiles} = this.state;
         return (
             <div>
-<<<<<<< HEAD
                 <div className="img-fluid col-md-12 img-fluid" style={sectionStyle}>
                     <br/>
                     <br/>
                     <br/>
                     <div className="container">
                         <div className="card card-1 shadow">
-                                <button className="btn btn-outline-primary" onClick={() => this.getAllUsers()}>
-                                    LOAD USERS
-                                </button>
-                                <div className="card card-1 shadow  overflow-auto">
-                                    <h4>Users List</h4>
-                                    <UserList users={users}/>
-                                </div>
-                        </div>
-                        <br/>
-                        <div className="card card-1 shadow">
-                                <button className="btn btn-outline-primary" onClick={() => this.getAllRequests()}>
-                                    LOAD REQUESTS
-                                </button>
-                                <div className="card card-1 shadow overflow-auto">
-                                    <h4>Requests List</h4>
-                                    <RequestList requests={requests}/>
-                                </div>
-                        </div>
-                        <br/>
-                        <div className="card card-1 shadow">
-                            <h4> User</h4>
-                            <form className="form-group">
-                                <input id="userFormInput"
-                                       type="search"
-                                       placeholder="User ID"
-                                       aria-label="Search"
-                                />
-                            </form>
-                            <button className="btn btn-outline-primary" onClick={() => this.getUserInformation()}>
-                                GET INFORMATION
+                            <button className="btn btn-outline-primary" onClick={() => this.getAllUsers()}>
+                                LOAD USERS
                             </button>
-                            <div>
-                                <h4>User Requests</h4>
-                                <UserRequest requests={userRequest}/>
+                            <div className="card card-1 shadow  overflow-auto">
+                                <h4>Users List</h4>
+                                <UserList users={users}/>
                             </div>
-
-                            <div>
-                                <h4>User Files</h4>
-                                <UserFiles files={userFiles}/>
-                            </div>
-                        <div className="card card-1 shadow col-md-6">
                         </div>
-                        </div>
-=======
-            <div className="img-fluid col-md-12 img-fluid"style={sectionStyle}>
-            <br/>
-            <br/>
-            <br/>
-            
-            <div className="row">
-            <div className="card card-1 shadow col-md-4 bg-light" >
-                <div>
-                    <h2> Selected User</h2>
-                    <form className="form-group">
-                        <input id = "userFormInput"
-                            type="search"
-                            placeholder="User ID"
-                            aria-label="Search"
-                        />
-                    </form>
-                    <button  className="btn btn-outline-primary" onClick={() =>  this.getUserInformation()}>
-                        GET INFORMATION
-                    </button>
-                </div>
-                <div>
-                    <h2>User Requests</h2>
-                    <UserRequest requests={userRequest} />
-                </div>
-
-                <div>
-                    <h2>User Files</h2>
-                    <UserFiles files={userFiles} />
-                </div>
-                </div>
-               
-                </div>
-
-                <div>
-                <br/>
-
-                    <br/>
-                    <div className="container overflow-auto" style={ListStyle}>
-                    <div className="card card-1 shadow col-md-12 overflow-auto bg-light">
-                    {loading && <div>Loading ...</div>}
-                    <UserList users={users} />
                     </div>
->>>>>>> ae95250994166b6568e07a459a9f92c8fd08f532
+                    <br/>
+                    <div className="container">
+                        <div className="card card-1 shadow">
+                            <button className="btn btn-outline-primary" onClick={() => this.getAllRequests()}>
+                                LOAD REQUESTS
+                            </button>
+                            <div className="card card-1 shadow  overflow-auto">
+                                <h4>Requests List</h4>
+                                <RequestList requests={requests}/>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div className="container card card-1 shadow">
+                        <h4> User</h4>
+                        <form className="form-group">
+                            <input id="userFormInput"
+                                   type="search"
+                                   placeholder="User ID"
+                                   aria-label="Search"
+                            />
+                        </form>
+                        <button className="btn btn-outline-primary" onClick={() => this.getUserInformation()}>
+                            GET INFORMATION
+                        </button>
+                        <div className="card card-1 shadow  overflow-auto">
+                            <h4>User Requests</h4>
+                            <UserRequest requests={userRequest}/>
+                        </div>
+
+                        <div className="card card-1 shadow  overflow-auto">
+                            <h4>User Files</h4>
+                            <UserFiles files={userFiles}/>
+                        </div>
                     </div>
                 </div>
             </div>
-           
         );
     }
 }
@@ -282,6 +221,7 @@ const UserRequest = ({requests}) => (
 );
 
 const UserFiles = ({files}) => (
+
     <ul>
         {files.map(file => (
             <li key={file.uid} className="list-group-item">
