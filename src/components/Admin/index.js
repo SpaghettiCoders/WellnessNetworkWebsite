@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
 import {withAuthorization} from "../Session";
-import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
-import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import background from "./back.png"
 
 class AdminPage extends Component {
@@ -142,7 +140,7 @@ class AdminPage extends Component {
 }
 const UserList = ({ users }) => (
     <ul className="list-group">
-    
+
         {users.map(user => (
             <li key={user.uid} className="list-group-item d-flex justify-content-between align-items-center">
         <span className="badge badge-primary">
