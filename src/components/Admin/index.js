@@ -108,7 +108,6 @@ class AdminPage extends Component {
                     
                     </div>
                 </div>
-            </div>
         );
     }
 }
