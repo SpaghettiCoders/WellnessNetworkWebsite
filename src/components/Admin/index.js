@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
+import NewsletterEditor from '../NewsletterEditor';
 import {withAuthorization} from "../Session";
 import background from "./back.png"
 
@@ -92,6 +93,7 @@ class AdminPage extends Component {
                     <button  className="btn btn-outline-primary" onClick={() =>  this.getUserInformation()}>
                         GET INFORMATION
                     </button>
+                    <NewsletterEditor />
                 </div>
                 <div>
                     <h2>User Requests</h2>
@@ -105,7 +107,11 @@ class AdminPage extends Component {
                 </div>
                
                 </div>
-
+                <div>
+                    <h2>User Files</h2>
+                    <UserFiles files={userFiles} />
+                </div>
+                </div>
                 <div>
                 <br/>
 
