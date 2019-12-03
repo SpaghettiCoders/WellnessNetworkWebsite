@@ -25,12 +25,12 @@ class NewsletterEditor extends Component {
         return (
             <div>
                 <input onClick={this.toggleNewsletterEditor} value={this.state.newsletterButtonText} type="button"/>
-                { !this.state.newsletterIsHidden ? <NewsletterMenu /> : null }
+                { !this.state.newsletterIsHidden ? <NewsletterMenu firebase={this.props.firebase} /> : null }
             </div>
         );
     }
 }
-const NewsletterMenu = () => {
+const NewsletterMenu = ({firebase}) => {
     let date = new Date()
     console.log(date)
     let day = date.getDate()
@@ -62,6 +62,7 @@ const NewsletterMenu = () => {
         console.log(`Date of newsletter to be deleted: ${dateOfNewsletterToBeDeleted}`);
         //ADD DATABASE STUFF HERE
         //ASK COREY ABOUT HOW TO GO ABOUT THIS
+        
     }
 
     const handleNewsletterAddForm = (event) => {
@@ -72,6 +73,7 @@ const NewsletterMenu = () => {
         console.log(`Date of newsletter to be added: ${dateOfNewsletterToBeAdded}`);
         //ADD DATABASE STUFF HERE
         //ASK COREY ABOUT HOW TO GO ABOUT THIS
+        firebase.insertNewsLetters(`${contentOfNewsletterToBeAdded}`,`${dateOfNewsletterToBeAdded}`,`${linkedVideoOfNewsletterToBeAdded}`,`${titleOfNewsletterToBeAdded}`)
     }
 
     return(
