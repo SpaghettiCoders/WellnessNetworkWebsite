@@ -1,4 +1,4 @@
-import React from 'react';
+//import React from 'react';
 //import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 import pic from './generic-headshot.png'
@@ -7,13 +7,46 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Particles from "react-particles-js";
 import background from "./template.png"
 import kam from "./pamela_koons.jpg"
-const Landing = () => (
+import React, { Component } from 'react';
+import { withFirebase } from '../Firebase';
+
+class Landing extends Component {
+constructor(props) {
+        super(props);
+        this.state = {
+            loading: false,
+            users: [],
+        };
+    }
+
+componentDidMount() {
+        this.setState({ loading: true });
+        this.props.firebase.users().on('value', snapshot => {
+            const usersObject = snapshot.val();
+            const usersList = Object.keys(usersObject).map(key => ({
+                ...usersObject[key],
+                uid: key,
+            }));
+            this.setState({
+                users: usersList,
+                loading: false,
+            });
+        });
+    }
+
+
+
+render ()  {
       
-   
-      
+   const { users, loading } = this.state;
+      return(
 
 <div>
 <div>
+<script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
+  <script>
+    window.sr = new ScrollReveal()
+  </script>
 <Particles 
               params={{
                 
@@ -157,77 +190,10 @@ sweet, but not too short so folks don't simply skip over it entirely.</p>
 
 
 <div className="row">
-<div className="col-md-4">
-              <div className="card mb-4 box-shadow">
-              <div className="card-body shadow">
-               <img className="card-img-top" src={kam} alt="Thumbnail [100%x225]" />
-                  <p className="card-text">This is a wider card with supporting text.</p>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <div className="btn-group">
-                      <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                      
-                    </div>
-                    <small className="text-muted">9 mins</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-<div className="col-md-4">
-              <div className="card mb-4 box-shadow">
-              <div className="card-body shadow">
-               <img className="card-img-top" src={kam} alt="Thumbnail [100%x225]" />
-                  <p className="card-text">This is a wider card with supporting text.</p>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <div className="btn-group">
-                      <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                      
-                    </div>
-                    <small className="text-muted">9 mins</small>
-                  </div>
-                </div>
-              </div>
-            </div>
 
 
 
-            <div className="col-md-4">
-              <div className="card mb-4 box-shadow">
-              <div className="card-body shadow">
-               <img className="card-img-top" src={kam} alt="Thumbnail [100%x225]" />
-                  <p className="card-text">This is a wider card with supporting text.</p>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <div className="btn-group">
-                      <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                      
-                    </div>
-                    <small className="text-muted">9 mins</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-
-
-            <div className="col-md-4">
-              <div className="card mb-4 box-shadow">
-              <div className="card-body shadow">
-               <img className="card-img-top" src={kam} alt="Thumbnail [100%x225]" />
-                  <p className="card-text">This is a wider card with supporting text.</p>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <div className="btn-group">
-                      <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
-                      
-                    </div>
-                    <small className="text-muted">9 mins</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
+            <UserList users={users} />
 
             </div>
 
@@ -236,5 +202,35 @@ sweet, but not too short so folks don't simply skip over it entirely.</p>
 
 
     
+
+
+
 );
-export default Landing;
+}
+
+
+}
+
+const UserList = ({ users }) => (
+    <div className="row">
+
+        {users.map(user => (
+                      <div className="col-md-4">
+              <div className="card mb-4 box-shadow">
+              <div className="card-body shadow">
+               <img className="card-img-top" src={kam} alt="Thumbnail [100%x225]" />
+                  <p className="card-text">{user.email}</p>
+                  <div className="d-flex justify-content-between align-items-center">
+                    <div className="btn-group">
+                      <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
+                      
+                    </div>
+                    <small className="text-muted">{user.username}</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+        ))}
+    </div>
+);
+export default (withFirebase(Landing));

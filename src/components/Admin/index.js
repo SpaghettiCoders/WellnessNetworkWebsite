@@ -113,6 +113,7 @@ class AdminPage extends Component {
         const {users,requests, loading, userRequest, userFiles} = this.state;
         return (
             <div>
+<<<<<<< HEAD
                 <div className="img-fluid col-md-12 img-fluid" style={sectionStyle}>
                     <br/>
                     <br/>
@@ -162,9 +163,54 @@ class AdminPage extends Component {
                         <div className="card card-1 shadow col-md-6">
                         </div>
                         </div>
+=======
+            <div className="img-fluid col-md-12 img-fluid"style={sectionStyle}>
+            <br/>
+            <br/>
+            <br/>
+            
+            <div className="row">
+            <div className="card card-1 shadow col-md-4 bg-light" >
+                <div>
+                    <h2> Selected User</h2>
+                    <form className="form-group">
+                        <input id = "userFormInput"
+                            type="search"
+                            placeholder="User ID"
+                            aria-label="Search"
+                        />
+                    </form>
+                    <button  className="btn btn-outline-primary" onClick={() =>  this.getUserInformation()}>
+                        GET INFORMATION
+                    </button>
+                </div>
+                <div>
+                    <h2>User Requests</h2>
+                    <UserRequest requests={userRequest} />
+                </div>
+
+                <div>
+                    <h2>User Files</h2>
+                    <UserFiles files={userFiles} />
+                </div>
+                </div>
+               
+                </div>
+
+                <div>
+                <br/>
+
+                    <br/>
+                    <div className="container overflow-auto" style={ListStyle}>
+                    <div className="card card-1 shadow col-md-12 overflow-auto bg-light">
+                    {loading && <div>Loading ...</div>}
+                    <UserList users={users} />
+                    </div>
+>>>>>>> ae95250994166b6568e07a459a9f92c8fd08f532
                     </div>
                 </div>
             </div>
+           
         );
     }
 }
