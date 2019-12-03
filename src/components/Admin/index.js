@@ -10,8 +10,11 @@ class AdminPage extends Component {
         this.state = {
             loading: false,
             users: [],
+            userRequest: [],
+            userFiles: [],
         };
     }
+
     componentDidMount() {
         this.setState({ loading: true });
         this.props.firebase.users().on('value', snapshot => {
@@ -20,6 +23,7 @@ class AdminPage extends Component {
                 ...usersObject[key],
                 uid: key,
             }));
+
             this.setState({
                 users: usersList,
                 loading: false,
@@ -29,35 +33,45 @@ class AdminPage extends Component {
     componentWillUnmount() {
         this.props.firebase.users().off();
     }
-
     deleteUser() {
         this.props.firebase.doDeleteUser();
     }
 
-    printValue(id) {
-        var uid = document.getElementById("userFormInput").value;
-        this.props.firebase.doDeleteUser(uid);
+    getUserRequests(uid) {
+        const elementsRaw = this.props.firebase.getElementsByUserID('requests', uid);
+        this.setState({
+            userRequest: elementsRaw,
+        })
     }
 
+    getUserFiles(uid) {
+        const elementsRaw = this.props.firebase.getElementsByUserID('files', uid);
+        this.setState({
+            userFiles: elementsRaw,
+        })
+    }
 
+    getUserInformation() {
+        var uid = document.getElementById("userFormInput").value;
+        this.getUserRequests(uid);
+        this.getUserFiles(uid);
+    }
 
     render() {
 
         var sectionStyle = {
-   backgroundImage: `url(${background})`,
-   height: "665px",
-   width: "100%",
-   backgroundSize: "contain"
+            backgroundImage: `url(${background})`,
+            height: "665px",
+            width: "100%",
+            backgroundSize: "contain"
 
-}
+        }
 
+        var ListStyle = {
+            maxHeight: "300px"
+        }
 
- var ListStyle = {
-   maxHeight: "300px"
-
-}
-
-        const { users, loading } = this.state;
+        const { users, loading, userRequest, userFiles } = this.state;
         return (
             <div>
             <div className="img-fluid col-md-12 img-fluid"style={sectionStyle}>
@@ -76,17 +90,24 @@ class AdminPage extends Component {
                             aria-label="Search"
                         />
                     </form>
-                    <button  className="btn btn-outline-primary" onClick={() =>  this.deleteUser()}>
-                        Delete User
-                    </button>
-                    <button  className="btn btn-outline-secondary" onClick={() => this.printValue()}>
-                        PrintValue
+                    <button  className="btn btn-outline-primary" onClick={() =>  this.getUserInformation()}>
+                        GET INFORMATION
                     </button>
                     <NewsletterEditor />
+                </div>
+                <div>
+                    <h2>User Requests</h2>
+                    <UserRequest requests={userRequest} />
+                </div>
+
+                <div>
+                    <h2>User Files</h2>
+                    <UserFiles files={userFiles} />
                 </div>
                 </div>
                
 
+<<<<<<< HEAD
 
                 
 
@@ -105,9 +126,12 @@ class AdminPage extends Component {
 
 
 
+=======
+                </div>
+>>>>>>> Firebase_Admin
                 <div>
                 <br/>
-                    
+
                     <br/>
                     <div className="container overflow-auto" style={ListStyle}>
                     <div className="card card-1 shadow col-md-12 overflow-auto bg-light">
@@ -116,9 +140,7 @@ class AdminPage extends Component {
                     </div>
                     </div>
                 </div>
-                
 
-             
             </div>
             </div>
             </div>
@@ -143,6 +165,55 @@ const UserList = ({ users }) => (
         ))}
     </ul>
 );
+
+const UserRequest = ({requests}) => (
+    <ul>
+        {requests.map(request => (
+            <li key={request.uid}>
+                <strong>RequestID: </strong>
+                {request.uid}
+                <ul>
+                    <li>
+                        <strong>Description: </strong>
+                        {request.value.description}
+                    </li>
+                    <li>
+                        <strong>File: </strong>
+                        {request.value.file}
+                    </li>
+                    <li>
+                        <strong>Name: </strong>
+                        {request.value.name}
+                    </li>
+                    <li>
+                        <strong>UserID: </strong>
+                        {request.value.userID}
+                    </li>
+
+                </ul>
+            </li>
+
+        ))}
+    </ul>
+);
+
+const UserFiles = ({files}) => (
+    <ul>
+        {files.map(file => (
+            <li key={file.uid}>
+                <strong>FileID:</strong>
+                {file.uid}
+                <ul>
+                    <li>
+                        <strong>UserID: </strong>
+                        {file.value.userID}
+                    </li>
+                </ul>
+            </li>
+        ))}
+    </ul>
+);
+
 const condition = authUser => !!authUser;
 export default withAuthorization(condition)(withFirebase(AdminPage));
 //export default withFirebase(AdminPage);
