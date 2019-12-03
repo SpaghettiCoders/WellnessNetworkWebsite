@@ -80,7 +80,11 @@ class AdminPage extends Component {
             <br/>
             
             <div className="row">
-            <div className="card card-1 shadow col-md-4 bg-light" >
+
+            <div className="col-md-4">
+            <div className="card mb-4 box-shadow">
+            <div className="card-body shadow">
+            
                 <div>
                     <h2> Selected User</h2>
                     <form className="form-group">
@@ -93,39 +97,61 @@ class AdminPage extends Component {
                     <button  className="btn btn-outline-primary" onClick={() =>  this.getUserInformation()}>
                         GET INFORMATION
                     </button>
-                    <NewsletterEditor />
                 </div>
-                <div>
+                </div>
+                </div>
+                </div>
+
+
+
+
+                <div className="col-md-8">
+                <div className="card mb-8 box-shadow">
+              <div className="card-body shadow">
+
+              <NewsletterEditor />
                     <h2>User Requests</h2>
                     <UserRequest requests={userRequest} />
-                </div>
-
-                <div>
                     <h2>User Files</h2>
                     <UserFiles files={userFiles} />
-                </div>
-                </div>
-               
-                </div>
-                <div>
-                    <h2>User Files</h2>
-                    <UserFiles files={userFiles} />
-                </div>
-                </div>
-                <div>
-                <br/>
+                
 
-                    <br/>
-                    <div className="container overflow-auto" style={ListStyle}>
-                    <div className="card card-1 shadow col-md-12 overflow-auto bg-light">
+
+              </div>
+                </div>
+                </div>
+
+
+
+
+                <div className="col-md-8">
+                <div className="card mb-8 box-shadow">
+              <div className="card-body shadow">
+
+                <div className="container overflow-auto" style={ListStyle}>
+                <div className="card card-1 shadow col-md-14 overflow-auto bg-light">
                     {loading && <div>Loading ...</div>}
                     <UserList users={users} />
                     </div>
+
                     </div>
                 </div>
+                </div>
+                </div>
+
+
+
+
 
             </div>
+
+
+
+                </div>
+
+
             </div>
+            
            
         );
     }
