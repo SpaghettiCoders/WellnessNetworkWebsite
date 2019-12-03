@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
 import {withAuthorization} from "../Session";
-
+import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+import '@trendmicro/react-sidenav/dist/react-sidenav.css';
+import background from "./back.png"
 
 class AdminPage extends Component {
     constructor(props) {
@@ -38,47 +40,119 @@ class AdminPage extends Component {
         this.props.firebase.doDeleteUser(uid);
     }
 
+
+
     render() {
+
+        var sectionStyle = {
+   backgroundImage: `url(${background})`,
+   height: "665px",
+   width: "100%",
+   backgroundSize: "contain"
+
+}
+
+
+ var ListStyle = {
+   maxHeight: "300px"
+
+}
+
         const { users, loading } = this.state;
         return (
             <div>
-                <div>
-                    <h1>Admin</h1>
-                    {loading && <div>Loading ...</div>}
-                    <UserList users={users} />
-                </div>
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div className="img-fluid col-md-12 img-fluid"style={sectionStyle}>
+            <br/>
+            <br/>
+            <br/>
+            <div className="container">
+
+            <div className="card card-1 shadow col-md-6" >
                 <div>
                     <h2> Selected User</h2>
-                    <form>
+                    <form className="form-group">
                         <input id = "userFormInput"
                             type="search"
                             placeholder="User ID"
                             aria-label="Search"
                         />
                     </form>
-                    <button onClick={() =>  this.deleteUser()}>
+                    <button  className="btn btn-outline-primary" onClick={() =>  this.deleteUser()}>
                         Delete User
                     </button>
-                    <button onClick={() => this.printValue()}>
+                    <button  className="btn btn-outline-secondary" onClick={() => this.printValue()}>
                         PrintValue
                     </button>
                 </div>
+                </div>
+                <div className="card card-1 shadow col-md-6" >
+                </div>
+
+
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div>
+                <br/>
+                    
+                    <br/>
+                    <div className="container overflow-auto" style={ListStyle}>
+                    <div className="card card-1 shadow col-md-6 overflow-auto">
+                    {loading && <div>Loading ...</div>}
+                    <UserList users={users} />
+                    </div>
+                    </div>
+                </div>
+                
+
+             
+            </div>
             </div>
         );
     }
 }
 const UserList = ({ users }) => (
-    <ul>
+    <ul className="list-group">
+    
         {users.map(user => (
-            <li key={user.uid}>
-        <span>
+            <li key={user.uid} className="list-group-item d-flex justify-content-between align-items-center">
+        <span className="badge badge-primary">
           <strong>ID:</strong> {user.uid}
         </span>
                 <span>
-          <strong>E-Mail:</strong> {user.email}
+          <strong></strong> {user.email}
         </span>
                 <span>
-          <strong>Username:</strong> {user.username}
+          <strong></strong> {user.username}
         </span>
             </li>
         ))}
