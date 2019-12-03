@@ -73,6 +73,7 @@ class AdminPage extends Component {
 
         const { users, loading, userRequest, userFiles } = this.state;
         return (
+            <div>
             <div className="img-fluid col-md-12 img-fluid"style={sectionStyle}>
             <br/>
             <br/>
@@ -104,6 +105,13 @@ class AdminPage extends Component {
                     <UserFiles files={userFiles} />
                 </div>
                 </div>
+               
+                </div>
+                <div>
+                    <h2>User Files</h2>
+                    <UserFiles files={userFiles} />
+                </div>
+                </div>
                 <div>
                 <br/>
 
@@ -118,6 +126,7 @@ class AdminPage extends Component {
 
             </div>
             </div>
+           
         );
     }
 }
