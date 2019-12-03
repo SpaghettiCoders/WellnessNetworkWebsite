@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
-import NewsletterEditor from '../NewsletterEditor';
 import {withAuthorization} from "../Session";
 import background from "./back.png"
 
@@ -10,24 +9,15 @@ class AdminPage extends Component {
         this.state = {
             loading: false,
             users: [],
+            requests: [],
             userRequest: [],
             userFiles: [],
         };
     }
 
     componentDidMount() {
-        this.setState({ loading: true });
-        this.props.firebase.users().on('value', snapshot => {
-            const usersObject = snapshot.val();
-            const usersList = Object.keys(usersObject).map(key => ({
-                ...usersObject[key],
-                uid: key,
-            }));
-
-            this.setState({
-                users: usersList,
-                loading: false,
-            });
+        this.setState({
+            loading: false,
         });
     }
     componentWillUnmount() {
@@ -35,6 +25,10 @@ class AdminPage extends Component {
     }
     deleteUser() {
         this.props.firebase.doDeleteUser();
+    }
+
+    deleteRequest(rid) {
+        this.props.firebase.deleteRequest(rid);
     }
 
     getUserRequests(uid) {
@@ -57,9 +51,37 @@ class AdminPage extends Component {
         this.getUserFiles(uid);
     }
 
+    getAllRequests() {
+        if (this.state.requests.length !== 0) {
+            this.setState({
+                requests: [],
+            })
+        }
+        else {
+            const query = this.props.firebase.getElementsInPath('requests');
+            this.setState({
+                requests: query,
+            })
+        }
+    }
+
+    getAllUsers() {
+        if (this.state.users.length !== 0) {
+            this.setState({
+                users: [],
+            })
+        }
+        else {
+            const query = this.props.firebase.getElementsInPath('users');
+            this.setState({
+                users: query,
+            })
+        }
+    }
+
     render() {
 
-        var sectionStyle = {
+        const sectionStyle = {
             backgroundImage: `url(${background})`,
             height: "665px",
             width: "100%",
@@ -67,120 +89,119 @@ class AdminPage extends Component {
 
         }
 
-        var ListStyle = {
-            maxHeight: "300px"
+        const ListStyle = {
+            maxHeight: "300px",
         }
 
-        const { users, loading, userRequest, userFiles } = this.state;
+        const adminHeaderStyle = {
+            textAlign: "center",
+            color: "blue",
+        }
+        const {users,requests, loading, userRequest, userFiles} = this.state;
         return (
             <div>
-            <div className="img-fluid col-md-12 img-fluid"style={sectionStyle}>
-            <br/>
-            <br/>
-            <br/>
-            
-            <div className="row">
-
-            <div className="col-md-4">
-            <div className="card mb-4 box-shadow">
-            <div className="card-body shadow">
-            
-                <div>
-                    <h2> Selected User</h2>
-                    <form className="form-group">
-                        <input id = "userFormInput"
-                            type="search"
-                            placeholder="User ID"
-                            aria-label="Search"
-                        />
-                    </form>
-                    <button  className="btn btn-outline-primary" onClick={() =>  this.getUserInformation()}>
-                        GET INFORMATION
-                    </button>
-                </div>
-                </div>
-                </div>
-                </div>
-
-
-
-
-                <div className="col-md-8">
-                <div className="card mb-8 box-shadow">
-              <div className="card-body shadow">
-
-              <NewsletterEditor />
-                    <h2>User Requests</h2>
-                    <UserRequest requests={userRequest} />
-                    <h2>User Files</h2>
-                    <UserFiles files={userFiles} />
-                
-
-
-              </div>
-                </div>
-                </div>
-
-
-
-
-                <div className="col-md-8">
-                <div className="card mb-8 box-shadow">
-              <div className="card-body shadow">
-
-                <div className="container overflow-auto" style={ListStyle}>
-                <div className="card card-1 shadow col-md-14 overflow-auto bg-light">
-                    {loading && <div>Loading ...</div>}
-                    <UserList users={users} />
+                <div className="img-fluid col-md-12 img-fluid" style={sectionStyle}>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h1 style={adminHeaderStyle}>ADMIN</h1>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div className="container">
+                        <div className="card card-1 shadow">
+                            <button className="btn btn-outline-primary" onClick={() => this.getAllUsers()}>
+                                LOAD USERS
+                            </button>
+                            <div className="card card-1 shadow  overflow-auto">
+                                <h4>Users List</h4>
+                                <UserList users={users}/>
+                            </div>
+                        </div>
                     </div>
+                    <br/>
+                    <div className="container">
+                        <div className="card card-1 shadow">
+                            <button className="btn btn-outline-primary" onClick={() => this.getAllRequests()}>
+                                LOAD REQUESTS
+                            </button>
+                            <div className="card card-1 shadow  overflow-auto">
+                                <h4>Requests List</h4>
+                                <RequestList requests={requests}/>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div className="container card card-1 shadow">
+                        <h4> User</h4>
+                        <form className="form-group">
+                            <input id="userFormInput"
+                                   type="search"
+                                   placeholder="User ID"
+                                   aria-label="Search"
+                            />
+                        </form>
+                        <button className="btn btn-outline-primary" onClick={() => this.getUserInformation()}>
+                            GET INFORMATION
+                        </button>
+                        <div className="card card-1 shadow  overflow-auto">
+                            <h4>User Requests</h4>
+                            <UserRequest requests={userRequest}/>
+                        </div>
 
+                        <div className="card card-1 shadow  overflow-auto">
+                            <h4>User Files</h4>
+                            <UserFiles files={userFiles}/>
+                        </div>
                     </div>
                 </div>
-                </div>
-                </div>
-
-
-
-
-
             </div>
-
-
-
-                </div>
-
-
-            </div>
-            
-           
         );
     }
 }
 const UserList = ({ users }) => (
     <ul className="list-group">
-
         {users.map(user => (
-            <li key={user.uid} className="list-group-item d-flex justify-content-between align-items-center">
-        <span className="badge badge-primary">
-          <strong>ID:</strong> {user.uid}
-        </span>
-                <span>
-          <strong></strong> {user.email}
-        </span>
-                <span>
-          <strong></strong> {user.username}
-        </span>
-            </li>
+        <li key={user.uid} className="list-group-item d-flex justify-content-between align-items-center">
+            <span className="badge badge-primary">
+              <strong>ID:</strong> {user.uid}
+            </span>
+            <span>
+              <strong></strong> {user.value.email}
+            </span>
+            <span>
+              <strong></strong> {user.value.username}
+            </span>
+        </li>
+        ))}
+    </ul>
+);
+
+const RequestList = ({ requests }) => (
+    <ul className="list-group">
+        {requests.map(request => (
+        <li key={request.uid} className="list-group-item d-flex justify-content-between align-items-center">
+            <span className="badge badge-primary">
+              <strong>ID:</strong> {request.uid}
+            </span>
+            <span>
+              <strong></strong> {request.value.name}
+            </span>
+            <span>
+              <strong></strong> {request.value.description}
+            </span>
+        </li>
         ))}
     </ul>
 );
 
 const UserRequest = ({requests}) => (
-    <ul>
+    <ul className="list-group">
         {requests.map(request => (
-            <li key={request.uid}>
-                <strong>RequestID: </strong>
-                {request.uid}
+            <li key={request.uid} className="list-group-item  justify-content-between align-items-center">
+                 <span className="badge badge-primary">
+                     <strong>RequestID: </strong> {request.uid}
+                 </span>
                 <ul>
                     <li>
                         <strong>Description: </strong>
@@ -207,11 +228,12 @@ const UserRequest = ({requests}) => (
 );
 
 const UserFiles = ({files}) => (
-    <ul>
+    <ul  className="list-group">
         {files.map(file => (
-            <li key={file.uid}>
-                <strong>FileID:</strong>
-                {file.uid}
+            <li key={file.uid} className="list-group-item  justify-content-between align-items-center">
+                <span className="badge badge-primary">
+                    <strong>FileID: </strong>{file.uid}
+                </span>
                 <ul>
                     <li>
                         <strong>UserID: </strong>
