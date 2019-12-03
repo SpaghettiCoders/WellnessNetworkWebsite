@@ -1,7 +1,7 @@
 import app from 'firebase/app'
 import 'firebase/auth';
 import 'firebase/database';
-import * as admin from 'firebase-admin';
+import {database} from "firebase";
 
 
 //FireBase config
@@ -15,7 +15,22 @@ const config = {
       appId: "1:671256703093:web:3f4a8271dab69a0983883c"
 };
 
-class Firebase {
+/*
+var admin = require("firebase-admin");
+
+
+var serviceAccount = require("./wellness-network-website-firebase-adminsdk-rymfd-2db6ae4219");
+
+console.log('LOADING TIME:', process.env.FIREBASE_CONFIG);
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://wellness-network-website.firebaseio.com"
+});
+*/
+
+class Firebase{
+    //Comment
     constructor() {
         app.initializeApp(config);
         this.auth = app.auth();
@@ -33,7 +48,6 @@ class Firebase {
     doPasswordUpdate = password =>
         this.auth.currentUser.updatePassword(password);
     doDeleteUser = () => {
-
         var user = this.auth.currentUser;
         console.log(user);
         this.auth.signOut();
@@ -44,17 +58,65 @@ class Firebase {
             console.log("Error deleting user.")
         });
     };
-    doDeleteUser = (uid) => {
-        try {
-            this.auth().deleteUser(uid)
-                .then(function() {
-                    console.log('Successfully deleted user');
-                })
-        }
-        catch (error) {
-            console.log('Error deleting user:', error);
-        }
+
+    doTest = () => {
+        //var elements = this.getElementsByUserID('requests', 'xxx123');
+        //console.log(elements);
+
+        //this.insertNewsLetters('Content', 'Data','Link', 'Title');
     };
+
+    //Data
+
+    deleteElement = (path, elementID) => {
+        try {
+            this.db.ref(path).child(elementID).remove();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    insertRequest = (description, file, name, userID) => {
+        this.db.ref('requests').push({
+            description: description,
+            file: file,
+            name: name,
+            userID: userID
+        });
+    }
+
+    deleteRequest = (requestID) => {
+        this.deleteElement('requests', requestID);
+    }
+
+    insertNewsLetters = (content, data, linked_video, title) => {
+        this.db.ref('newsletters').push({
+            content: content,
+            data: data,
+            linked_video: linked_video,
+            title: title
+        });
+    }
+
+    deleteNewsLetters = (newsLetterID) => {
+        this.deleteElement('newsletters',newsLetterID );
+    }
+
+    getElementsByUserID = (path, userID) => {
+        var data = [];
+        var ref = this.db.ref(path);
+        ref.on('value',function (snapshot) {
+            snapshot.forEach(function (childSnapshot){
+                if(childSnapshot.val().userID == userID) {
+                    data.push({
+                        uid:childSnapshot.key,
+                        value:childSnapshot.val()
+                    });
+                }
+            });
+        });
+        return data;
+    }
 
     // *** User API ***
     user = uid => this.db.ref(`users/${uid}`);
