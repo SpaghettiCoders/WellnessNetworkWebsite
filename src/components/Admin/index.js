@@ -20,11 +20,9 @@ class AdminPage extends Component {
             loading: false,
         });
     }
-
     componentWillUnmount() {
         this.props.firebase.users().off();
     }
-
     deleteUser() {
         this.props.firebase.doDeleteUser();
     }
@@ -85,9 +83,10 @@ class AdminPage extends Component {
 
         const sectionStyle = {
             backgroundImage: `url(${background})`,
-            height: "720px",
+            height: "665px",
             width: "100%",
-            backgroundSize: "contain",
+            backgroundSize: "contain"
+
         }
 
         const ListStyle = {
