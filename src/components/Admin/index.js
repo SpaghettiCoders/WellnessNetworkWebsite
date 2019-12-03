@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
 import {withAuthorization} from "../Session";
-
+import background from "./back.png"
 
 class AdminPage extends Component {
     constructor(props) {
@@ -32,12 +32,6 @@ class AdminPage extends Component {
     componentWillUnmount() {
         this.props.firebase.users().off();
     }
-
-    /*
-    <button onClick={() =>  this.deleteUser()}>
-        Delete User
-     </button>
-     */
     deleteUser() {
         this.props.firebase.doDeleteUser();
     }
@@ -63,24 +57,26 @@ class AdminPage extends Component {
     }
 
     render() {
-        const { users, loading , userRequest, userFiles} = this.state;
+        const { users, loading } = this.state;
         return (
             <div>
-                <div>
-                    <h1>Admin</h1>
-                    {loading && <div>Loading ...</div>}
-                    <UserList users={users} />
-                </div>
+            <div className="img-fluid col-md-12 img-fluid"style={sectionStyle}>
+            <br/>
+            <br/>
+            <br/>
+            <div className="container">
+
+            <div className="card card-1 shadow col-md-6" >
                 <div>
                     <h2> Selected User</h2>
-                    <form>
+                    <form className="form-group">
                         <input id = "userFormInput"
                             type="search"
                             placeholder="User ID"
                             aria-label="Search"
                         />
                     </form>
-                    <button onClick={() => this.getUserInformation()}>
+                    <button  className="btn btn-outline-primary" onClick={() =>  this.getUserInformation()}>
                         GET INFORMATION
                     </button>
                 </div>
@@ -93,22 +89,41 @@ class AdminPage extends Component {
                     <h2>User Files</h2>
                     <UserFiles files={userFiles} />
                 </div>
+                </div>
+                <div className="card card-1 shadow col-md-6" >
+                </div>
+
+                </div>
+                <div>
+                <br/>
+
+                    <br/>
+                    <div className="container overflow-auto" style={ListStyle}>
+                    <div className="card card-1 shadow col-md-6 overflow-auto">
+                    {loading && <div>Loading ...</div>}
+                    <UserList users={users} />
+                    </div>
+                    </div>
+                </div>
+
+            </div>
             </div>
         );
     }
 }
 const UserList = ({ users }) => (
-    <ul>
+    <ul className="list-group">
+
         {users.map(user => (
-            <li key={user.uid}>
-        <span>
+            <li key={user.uid} className="list-group-item d-flex justify-content-between align-items-center">
+        <span className="badge badge-primary">
           <strong>ID:</strong> {user.uid}
         </span>
                 <span>
-          <strong>E-Mail:</strong> {user.email}
+          <strong></strong> {user.email}
         </span>
                 <span>
-          <strong>Username:</strong> {user.username}
+          <strong></strong> {user.username}
         </span>
             </li>
         ))}

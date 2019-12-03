@@ -1,15 +1,29 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-
+import background from "./back.png"
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 const SignUpPage = () => (
-    <div className = "col-centered col-md-6 text-md-center">
+ <div className="img-fluid col-md-12 img-fluid"style={sectionStyle}>
+    <div className = "col-centered col-md-12 text-md-center ">
+        <h1></h1>
         <h1>SignUp</h1>
+        
          <SignUpForm />
+         
     </div>
+    </div>
+    
 );
+
+var sectionStyle = {
+   backgroundImage: `url(${background})`,
+   height: "665px",
+   width: "100%",
+   backgroundSize: "contain"
+
+}
 
 const INITIAL_STATE = {
     username: '',
@@ -23,7 +37,6 @@ class SignUpFormBase extends Component {
     constructor(props) {
         super(props);
         this.state = { ...INITIAL_STATE };
-        //this.props.history.push(ROUTES.HOME);             //<----- This line redirect to Home all the time. How to fix it?????
     }
     onSubmit = event => {
         const { username, email, passwordOne } = this.state;
@@ -36,6 +49,7 @@ class SignUpFormBase extends Component {
                     .set({
                         username,
                         email,
+                        isAdmin: 0
                     });
             })
             .then(authUser => {
@@ -57,7 +71,6 @@ class SignUpFormBase extends Component {
             passwordTwo,
             error,
         } = this.state;
-
         const isInvalid =
             passwordOne !== passwordTwo ||
             passwordOne === '' ||
@@ -65,9 +78,16 @@ class SignUpFormBase extends Component {
             username === '';
 
         return (
-            <form onSubmit={this.onSubmit}>
 
-            <div className="form-group">
+            <div className="row d-flex justify-content-center">
+            <div className="container-fluid ">
+            </div>
+
+            <div className="card card-1 shadow col-md-6" >
+            <h1>SignUp</h1>
+            <form onSubmit={this.onSubmit} >
+
+            <div className="form-group card mb-4 box-shadow">
                 <input className="form-control"
                     name="username"
                     value={username}
@@ -110,6 +130,8 @@ class SignUpFormBase extends Component {
                 </div>
                 {error && <p>{error.message}</p>}
             </form>
+            </div>
+            </div>
         );
     }
 }
