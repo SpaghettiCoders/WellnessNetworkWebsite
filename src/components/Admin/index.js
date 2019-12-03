@@ -57,6 +57,20 @@ class AdminPage extends Component {
         this.getUserFiles(uid);
     }
 
+    getAllRequests() {
+        if (this.state.requests.length !== 0) {
+            this.setState({
+                requests: [],
+            })
+        }
+        else {
+            const query = this.props.firebase.getElementsInPath('requests');
+            this.setState({
+                requests: query,
+            })
+        }
+    }
+
     render() {
 
         var sectionStyle = {
@@ -133,6 +147,8 @@ class AdminPage extends Component {
                     {loading && <div>Loading ...</div>}
                     <UserList users={users} />
                     </div>
+
+                   
 
                     </div>
                 </div>

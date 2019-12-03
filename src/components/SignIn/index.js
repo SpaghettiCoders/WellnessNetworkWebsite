@@ -12,6 +12,7 @@ const SignInPage = () => (
     <div className = "col-centered col-md-12 text-md-center ">
     <h1></h1>
         <h1>SignIn</h1>
+        <br/>
         <SignInForm />
         
     
