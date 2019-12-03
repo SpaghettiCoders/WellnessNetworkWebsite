@@ -73,7 +73,6 @@ class AdminPage extends Component {
 
         const { users, loading, userRequest, userFiles } = this.state;
         return (
-            <div>
             <div className="img-fluid col-md-12 img-fluid"style={sectionStyle}>
             <br/>
             <br/>
@@ -105,30 +104,6 @@ class AdminPage extends Component {
                     <UserFiles files={userFiles} />
                 </div>
                 </div>
-               
-
-<<<<<<< HEAD
-
-                
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
-                </div>
->>>>>>> Firebase_Admin
                 <div>
                 <br/>
 
@@ -141,7 +116,6 @@ class AdminPage extends Component {
                     </div>
                 </div>
 
-            </div>
             </div>
             </div>
         );

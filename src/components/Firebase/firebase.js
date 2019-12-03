@@ -89,17 +89,26 @@ class Firebase{
         this.deleteElement('requests', requestID);
     }
 
-    insertNewsLetters = (content, data, linked_video, title) => {
+    insertNewsLetters = (content, date, linked_video, title) => {
         this.db.ref('newsletters').push({
             content: content,
-            data: data,
+            date: date,
             linked_video: linked_video,
             title: title
         });
     }
 
-    deleteNewsLetters = (newsLetterID) => {
-        this.deleteElement('newsletters',newsLetterID );
+    deleteNewsLetters = (title, date) => {
+        var newsletterID = '';
+        var ref = this.db.ref('newsletters');
+        ref.on('value', function (snapshot){
+            snapshot.forEach(function (childSnapshot){
+                if(childSnapshot.val().title == title && childSnapshot.val().date == date){
+                    newsletterID = childSnapshot.key
+                }
+            });
+        });
+        this.deleteElement('newsletters', newsletterID)
     }
 
     getElementsByUserID = (path, userID) => {

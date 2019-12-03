@@ -62,7 +62,7 @@ const NewsletterMenu = ({firebase}) => {
         console.log(`Date of newsletter to be deleted: ${dateOfNewsletterToBeDeleted}`);
         //ADD DATABASE STUFF HERE
         //ASK COREY ABOUT HOW TO GO ABOUT THIS
-        
+        firebase.deleteNewsLetters(`${titleOfNewsletterToBeDeleted}`,`${dateOfNewsletterToBeDeleted}`)
     }
 
     const handleNewsletterAddForm = (event) => {
@@ -80,9 +80,9 @@ const NewsletterMenu = ({firebase}) => {
         <div>
             <br/>
             <h5>Add a newsletter</h5>
-            <form onSubmit={handleNewsletterAddForm}>
+            <form onSubmit={handleNewsletterAddForm} name="addNewsletter">
                 Title: <input type="text" name="title" placeholder="Title" size="50" value={titleOfNewsletterToBeAdded} onChange={updateState(setTitleOfNewsletterToBeAdded)}/><br/>
-                Content: <br/><textarea rows="5" cols="120" name="content" wrap="soft" placeholder="Insert newsletter text content here..." value={contentOfNewsletterToBeAdded} onChange={updateState(setContentOfNewsletterToBeAdded)}/><br/>
+                Content: <br/><textarea rows="5" cols="50" name="content" wrap="soft" placeholder="Insert newsletter text content here..." value={contentOfNewsletterToBeAdded} onChange={updateState(setContentOfNewsletterToBeAdded)}/><br/>
                 Linked Video (Enter "NONE" if no video to link): <br/><input type="text" name="linkedVideo" size="50" placeholder="URL of linked YouTube video" value={linkedVideoOfNewsletterToBeAdded} onChange={updateState(setLinkedVideoOfNewsletterToBeAdded)}/><br/>
                 Date: <input type="date" name="date" value={dateOfNewsletterToBeAdded} onChange={updateState(setDateOfNewsletterToBeAdded)}/>
                 <br/><input type="submit" value="Submit"/>
@@ -90,7 +90,7 @@ const NewsletterMenu = ({firebase}) => {
             <br/>
             <h5>Delete a newsletter</h5>
             Enter the title and date of the newsletter to be deleted:
-            <form onSubmit={handleNewsletterDeleteForm}>
+            <form onSubmit={handleNewsletterDeleteForm} id="deleteNewsletter">
                 Title: <input type="text" name="title" placeholder="Title" size="50" value={titleOfNewsletterToBeDeleted} onChange={updateState(setTitleOfNewsletterToBeDeleted)}/><br/>
                 Date:<input type="date" name="date" value={dateOfNewsletterToBeDeleted} onChange={updateState(setDateOfNewsletterToBeDeleted)}/><br/>
                 <input type="submit" value="Submit"/>
