@@ -57,7 +57,7 @@ class AdminPage extends Component {
     }
 
     render() {
-        const { users, loading } = this.state;
+        const { users, loading, userRequest, userFiles } = this.state;
         return (
             <div>
             <div className="img-fluid col-md-12 img-fluid"style={sectionStyle}>
