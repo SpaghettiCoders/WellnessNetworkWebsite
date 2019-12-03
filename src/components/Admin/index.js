@@ -65,20 +65,6 @@ class AdminPage extends Component {
         }
     }
 
-    getAllUsers() {
-        if (this.state.users.length !== 0) {
-            this.setState({
-                users: [],
-            })
-        }
-        else {
-            const query = this.props.firebase.getElementsInPath('users');
-            this.setState({
-                users: query,
-            })
-        }
-    }
-
     render() {
 
         const sectionStyle = {
@@ -119,40 +105,7 @@ class AdminPage extends Component {
                             </div>
                         </div>
                     </div>
-                    <br/>
-                    <div className="container">
-                        <div className="card card-1 shadow">
-                            <button className="btn btn-outline-primary" onClick={() => this.getAllRequests()}>
-                                LOAD REQUESTS
-                            </button>
-                            <div className="card card-1 shadow  overflow-auto">
-                                <h4>Requests List</h4>
-                                <RequestList requests={requests}/>
-                            </div>
-                        </div>
-                    </div>
-                    <br/>
-                    <div className="container card card-1 shadow">
-                        <h4> User</h4>
-                        <form className="form-group">
-                            <input id="userFormInput"
-                                   type="search"
-                                   placeholder="User ID"
-                                   aria-label="Search"
-                            />
-                        </form>
-                        <button className="btn btn-outline-primary" onClick={() => this.getUserInformation()}>
-                            GET INFORMATION
-                        </button>
-                        <div className="card card-1 shadow  overflow-auto">
-                            <h4>User Requests</h4>
-                            <UserRequest requests={userRequest}/>
-                        </div>
-
-                        <div className="card card-1 shadow  overflow-auto">
-                            <h4>User Files</h4>
-                            <UserFiles files={userFiles}/>
-                        </div>
+                    
                     </div>
                 </div>
             </div>
