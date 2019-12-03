@@ -118,6 +118,20 @@ class Firebase{
         return data;
     }
 
+    getElementsInPath = (path) => {
+        var data = [];
+        var ref = this.db.ref(path);
+        ref.on('value',function (snapshot) {
+            snapshot.forEach(function (childSnapshot){
+                    data.push({
+                        uid:childSnapshot.key,
+                        value:childSnapshot.val()
+                    });
+            });
+        });
+        return data;
+    }
+
     // *** User API ***
     user = uid => this.db.ref(`users/${uid}`);
     users = () => this.db.ref('users');
