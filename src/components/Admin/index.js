@@ -57,6 +57,19 @@ class AdminPage extends Component {
     }
 
     render() {
+
+        var sectionStyle = {
+            backgroundImage: `url(${background})`,
+            height: "665px",
+            width: "100%",
+            backgroundSize: "contain"
+
+        }
+
+        var ListStyle = {
+            maxHeight: "300px"
+        }
+
         const { users, loading, userRequest, userFiles } = this.state;
         return (
             <div>
