@@ -85,20 +85,27 @@ class AdminPage extends Component {
 
         const sectionStyle = {
             backgroundImage: `url(${background})`,
-            height: "665px",
+            height: "720px",
             width: "100%",
             backgroundSize: "contain",
-
         }
 
         const ListStyle = {
             maxHeight: "300px",
         }
 
+        const adminHeaderStyle = {
+            textAlign: "center",
+            color: "blue",
+        }
         const {users,requests, loading, userRequest, userFiles} = this.state;
         return (
             <div>
                 <div className="img-fluid col-md-12 img-fluid" style={sectionStyle}>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h1 style={adminHeaderStyle}>ADMIN</h1>
                     <br/>
                     <br/>
                     <br/>
@@ -190,11 +197,12 @@ const RequestList = ({ requests }) => (
 );
 
 const UserRequest = ({requests}) => (
-    <ul>
+    <ul className="list-group">
         {requests.map(request => (
-            <li key={request.uid} className="list-group-item ">
-                <strong>RequestID: </strong>
-                {request.uid}
+            <li key={request.uid} className="list-group-item  justify-content-between align-items-center">
+                 <span className="badge badge-primary">
+                     <strong>RequestID: </strong> {request.uid}
+                 </span>
                 <ul>
                     <li>
                         <strong>Description: </strong>
@@ -221,12 +229,12 @@ const UserRequest = ({requests}) => (
 );
 
 const UserFiles = ({files}) => (
-
-    <ul>
+    <ul  className="list-group">
         {files.map(file => (
-            <li key={file.uid} className="list-group-item">
-                <strong>FileID: </strong>
-                {file.uid}
+            <li key={file.uid} className="list-group-item  justify-content-between align-items-center">
+                <span className="badge badge-primary">
+                    <strong>FileID: </strong>{file.uid}
+                </span>
                 <ul>
                     <li>
                         <strong>UserID: </strong>
