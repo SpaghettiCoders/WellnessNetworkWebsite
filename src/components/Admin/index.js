@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
 import {withAuthorization} from "../Session";
+import NewsletterEditor from '../NewsletterEditor';
 import background from "./back.png"
 
 class AdminPage extends Component {
@@ -97,6 +98,7 @@ class AdminPage extends Component {
             textAlign: "center",
             color: "blue",
         }
+
         const {users,requests, loading, userRequest, userFiles} = this.state;
         return (
             <div>
@@ -153,6 +155,10 @@ class AdminPage extends Component {
                             <h4>User Files</h4>
                             <UserFiles files={userFiles}/>
                         </div>
+                    </div>
+                    <br/>
+                    <div className="container card card-1 shadow">
+                        <NewsletterEditor/>
                     </div>
                 </div>
             </div>
