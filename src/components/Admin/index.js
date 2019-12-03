@@ -78,9 +78,9 @@ class AdminPage extends Component {
             <br/>
             <br/>
             <br/>
-            <div className="container">
-
-            <div className="card card-1 shadow col-md-6" >
+            
+            <div className="row">
+            <div className="card card-1 shadow col-md-4 bg-light" >
                 <div>
                     <h2> Selected User</h2>
                     <form className="form-group">
@@ -98,11 +98,10 @@ class AdminPage extends Component {
                     </button>
                 </div>
                 </div>
-                <div className="card card-1 shadow col-md-6" >
-                </div>
+               
 
 
-                </div>
+                
 
 
 
@@ -124,7 +123,7 @@ class AdminPage extends Component {
                     
                     <br/>
                     <div className="container overflow-auto" style={ListStyle}>
-                    <div className="card card-1 shadow col-md-6 overflow-auto">
+                    <div className="card card-1 shadow col-md-12 overflow-auto bg-light">
                     {loading && <div>Loading ...</div>}
                     <UserList users={users} />
                     </div>
@@ -133,6 +132,7 @@ class AdminPage extends Component {
                 
 
              
+            </div>
             </div>
             </div>
         );
