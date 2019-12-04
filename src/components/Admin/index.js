@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
 import {withAuthorization} from "../Session";
+import NewsletterEditor from '../NewsletterEditor';
 import background from "./back.png"
 
 class AdminPage extends Component {
@@ -27,8 +28,17 @@ class AdminPage extends Component {
         this.props.firebase.doDeleteUser();
     }
 
-    deleteRequest(rid) {
+    deleteRequest() {
+        const rid = document.getElementById("requestInputForm").value;
         this.props.firebase.deleteRequest(rid);
+        this.getUserInformation();
+        this.getAllRequests();
+    }
+
+    deleteFile() {
+        const fid = document.getElementById("fileInputForm").value;
+        this.props.firebase.deleteFile(fid);
+        this.getUserInformation();
     }
 
     getUserRequests(uid) {
@@ -83,6 +93,7 @@ class AdminPage extends Component {
             textAlign: "center",
             color: "blue",
         }
+
         const {users,requests, loading, userRequest, userFiles} = this.state;
         return (
             <div>
@@ -106,6 +117,38 @@ class AdminPage extends Component {
                         </div>
                     </div>
                     
+                    </div>
+                    <br/>
+                    <div className="container card card-1 shadow">
+                        <h4> Delete Request</h4>
+                        <form className="form-group">
+                            <input id="requestInputForm"
+                                   type="search"
+                                   placeholder="Request ID"
+                                   aria-label="Search"
+                            />
+                        </form>
+                        <button className="btn btn-outline-primary" onClick={() => this.deleteRequest()}>
+                            DELETE
+                        </button>
+                    </div>
+                    <br/>
+                    <div className="container card card-1 shadow">
+                        <h4> Delete File</h4>
+                        <form className="form-group">
+                            <input id="fileInputForm"
+                                   type="search"
+                                   placeholder="Request ID"
+                                   aria-label="Search"
+                            />
+                        </form>
+                        <button className="btn btn-outline-primary" onClick={() => this.deleteFile()}>
+                            DELETE
+                        </button>
+                    </div>
+                    <br/>
+                    <div className="container card card-1 shadow">
+                        <NewsletterEditor/>
                     </div>
                 </div>
         );
