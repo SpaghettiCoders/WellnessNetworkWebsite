@@ -3,7 +3,6 @@ import { withFirebase } from '../Firebase';
 import {withAuthorization} from "../Session";
 import NewsletterEditor from '../NewsletterEditor';
 import background from "./back.png"
-import NewsletterEditor from "../NewsletterEditor"
 
 class AdminPage extends Component {
     constructor(props) {
@@ -98,45 +97,6 @@ class AdminPage extends Component {
         const {users,requests, loading, userRequest, userFiles} = this.state;
         return (
             <div>
-<<<<<<< HEAD
-            <div className="img-fluid col-md-12 img-fluid"style={sectionStyle}>
-            <br/>
-            <br/>
-            <br/>
-            
-            <div className="row">
-            <div className="card card-1 shadow col-md-4 bg-light" >
-                <div>
-                    <h2> Selected User</h2>
-                    <form className="form-group">
-                        <input id = "userFormInput"
-                            type="search"
-                            placeholder="User ID"
-                            aria-label="Search"
-                        />
-                    </form>
-                    <button  className="btn btn-outline-primary" onClick={() =>  this.getUserInformation()}>
-                        GET INFORMATION
-                    </button>
-                    <NewsletterEditor />
-                </div>
-                <div>
-                    <h2>User Requests</h2>
-                    <UserRequest requests={userRequest} />
-                </div>
-
-                <div>
-                    <h2>User Files</h2>
-                    <UserFiles files={userFiles} />
-                </div>
-                </div>
-               
-                </div>
-
-                <div>
-                <br/>
-
-=======
                 <div className="img-fluid col-md-12 img-fluid" style={sectionStyle}>
                     <br/>
                     <br/>
@@ -172,7 +132,6 @@ class AdminPage extends Component {
                             DELETE
                         </button>
                     </div>
->>>>>>> master
                     <br/>
                     <div className="container card card-1 shadow">
                         <h4> Delete File</h4>
