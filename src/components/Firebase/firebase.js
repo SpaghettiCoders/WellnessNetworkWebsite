@@ -89,6 +89,10 @@ class Firebase{
         this.deleteElement('requests', requestID);
     }
 
+    deleteFile = (fileID) => {
+        this.deleteElement('files', fileID);
+    }
+
     insertNewsLetters = (content, date, linked_video, title) => {
         this.db.ref('newsletters').push({
             content: content,
@@ -122,6 +126,20 @@ class Firebase{
                         value:childSnapshot.val()
                     });
                 }
+            });
+        });
+        return data;
+    }
+
+    getElementsInPath = (path) => {
+        var data = [];
+        var ref = this.db.ref(path);
+        ref.on('value',function (snapshot) {
+            snapshot.forEach(function (childSnapshot){
+                    data.push({
+                        uid:childSnapshot.key,
+                        value:childSnapshot.val()
+                    });
             });
         });
         return data;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
 import {withAuthorization} from "../Session";
+import NewsletterEditor from '../NewsletterEditor';
 import background from "./back.png"
 import NewsletterEditor from "../NewsletterEditor"
 
@@ -10,24 +11,15 @@ class AdminPage extends Component {
         this.state = {
             loading: false,
             users: [],
+            requests: [],
             userRequest: [],
             userFiles: [],
         };
     }
 
     componentDidMount() {
-        this.setState({ loading: true });
-        this.props.firebase.users().on('value', snapshot => {
-            const usersObject = snapshot.val();
-            const usersList = Object.keys(usersObject).map(key => ({
-                ...usersObject[key],
-                uid: key,
-            }));
-
-            this.setState({
-                users: usersList,
-                loading: false,
-            });
+        this.setState({
+            loading: false,
         });
     }
     componentWillUnmount() {
@@ -35,6 +27,19 @@ class AdminPage extends Component {
     }
     deleteUser() {
         this.props.firebase.doDeleteUser();
+    }
+
+    deleteRequest() {
+        const rid = document.getElementById("requestInputForm").value;
+        this.props.firebase.deleteRequest(rid);
+        this.getUserInformation();
+        this.getAllRequests();
+    }
+
+    deleteFile() {
+        const fid = document.getElementById("fileInputForm").value;
+        this.props.firebase.deleteFile(fid);
+        this.getUserInformation();
     }
 
     getUserRequests(uid) {
@@ -57,9 +62,23 @@ class AdminPage extends Component {
         this.getUserFiles(uid);
     }
 
+    getAllRequests() {
+        if (this.state.requests.length !== 0) {
+            this.setState({
+                requests: [],
+            })
+        }
+        else {
+            const query = this.props.firebase.getElementsInPath('requests');
+            this.setState({
+                requests: query,
+            })
+        }
+    }
+
     render() {
 
-        var sectionStyle = {
+        const sectionStyle = {
             backgroundImage: `url(${background})`,
             height: "665px",
             width: "100%",
@@ -67,13 +86,19 @@ class AdminPage extends Component {
 
         }
 
-        var ListStyle = {
-            maxHeight: "300px"
+        const ListStyle = {
+            maxHeight: "300px",
         }
 
-        const { users, loading, userRequest, userFiles } = this.state;
+        const adminHeaderStyle = {
+            textAlign: "center",
+            color: "blue",
+        }
+
+        const {users,requests, loading, userRequest, userFiles} = this.state;
         return (
             <div>
+<<<<<<< HEAD
             <div className="img-fluid col-md-12 img-fluid"style={sectionStyle}>
             <br/>
             <br/>
@@ -111,46 +136,108 @@ class AdminPage extends Component {
                 <div>
                 <br/>
 
+=======
+                <div className="img-fluid col-md-12 img-fluid" style={sectionStyle}>
                     <br/>
-                    <div className="container overflow-auto" style={ListStyle}>
-                    <div className="card card-1 shadow col-md-12 overflow-auto bg-light">
-                    {loading && <div>Loading ...</div>}
-                    <UserList users={users} />
+                    <br/>
+                    <br/>
+                    <h1 style={adminHeaderStyle}>ADMIN</h1>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div className="container">
+                        <div className="card card-1 shadow">
+                            <button className="btn btn-outline-primary" onClick={() => this.getAllUsers()}>
+                                LOAD USERS
+                            </button>
+                            <div className="card card-1 shadow  overflow-auto">
+                                <h4>Users List</h4>
+                                <UserList users={users}/>
+                            </div>
+                        </div>
                     </div>
+                    
+                    </div>
+                    <br/>
+                    <div className="container card card-1 shadow">
+                        <h4> Delete Request</h4>
+                        <form className="form-group">
+                            <input id="requestInputForm"
+                                   type="search"
+                                   placeholder="Request ID"
+                                   aria-label="Search"
+                            />
+                        </form>
+                        <button className="btn btn-outline-primary" onClick={() => this.deleteRequest()}>
+                            DELETE
+                        </button>
+                    </div>
+>>>>>>> master
+                    <br/>
+                    <div className="container card card-1 shadow">
+                        <h4> Delete File</h4>
+                        <form className="form-group">
+                            <input id="fileInputForm"
+                                   type="search"
+                                   placeholder="Request ID"
+                                   aria-label="Search"
+                            />
+                        </form>
+                        <button className="btn btn-outline-primary" onClick={() => this.deleteFile()}>
+                            DELETE
+                        </button>
+                    </div>
+                    <br/>
+                    <div className="container card card-1 shadow">
+                        <NewsletterEditor/>
                     </div>
                 </div>
-
-            </div>
-            </div>
-           
         );
     }
 }
 const UserList = ({ users }) => (
     <ul className="list-group">
-
         {users.map(user => (
-            <li key={user.uid} className="list-group-item d-flex justify-content-between align-items-center">
-        <span className="badge badge-primary">
-          <strong>ID:</strong> {user.uid}
-        </span>
-                <span>
-          <strong></strong> {user.email}
-        </span>
-                <span>
-          <strong></strong> {user.username}
-        </span>
-            </li>
+        <li key={user.uid} className="list-group-item d-flex justify-content-between align-items-center">
+            <span className="badge badge-primary">
+              <strong>ID:</strong> {user.uid}
+            </span>
+            <span>
+              <strong></strong> {user.value.email}
+            </span>
+            <span>
+              <strong></strong> {user.value.username}
+            </span>
+        </li>
+        ))}
+    </ul>
+);
+
+const RequestList = ({ requests }) => (
+    <ul className="list-group">
+        {requests.map(request => (
+        <li key={request.uid} className="list-group-item d-flex justify-content-between align-items-center">
+            <span className="badge badge-primary">
+              <strong>ID:</strong> {request.uid}
+            </span>
+            <span>
+              <strong></strong> {request.value.name}
+            </span>
+            <span>
+              <strong></strong> {request.value.description}
+            </span>
+        </li>
         ))}
     </ul>
 );
 
 const UserRequest = ({requests}) => (
-    <ul>
+    <ul className="list-group">
         {requests.map(request => (
-            <li key={request.uid}>
-                <strong>RequestID: </strong>
-                {request.uid}
+            <li key={request.uid} className="list-group-item  justify-content-between align-items-center">
+                 <span className="badge badge-primary">
+                     <strong>RequestID: </strong> {request.uid}
+                 </span>
                 <ul>
                     <li>
                         <strong>Description: </strong>
@@ -177,11 +264,12 @@ const UserRequest = ({requests}) => (
 );
 
 const UserFiles = ({files}) => (
-    <ul>
+    <ul  className="list-group">
         {files.map(file => (
-            <li key={file.uid}>
-                <strong>FileID:</strong>
-                {file.uid}
+            <li key={file.uid} className="list-group-item  justify-content-between align-items-center">
+                <span className="badge badge-primary">
+                    <strong>FileID: </strong>{file.uid}
+                </span>
                 <ul>
                     <li>
                         <strong>UserID: </strong>

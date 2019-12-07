@@ -9,6 +9,7 @@ const SignUpPage = () => (
     <div className = "col-centered col-md-12 text-md-center ">
         <h1></h1>
         <h1>SignUp</h1>
+        <br/>
         
          <SignUpForm />
          

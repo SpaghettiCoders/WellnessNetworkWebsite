@@ -8,6 +8,9 @@ class Account extends Component {
     render() {
         return (
             <div>
+            <br/>
+            <br/>
+            <br/>
                 <form>
                     <PasswordForgetForm/>
                     <PasswordChangeForm/>
