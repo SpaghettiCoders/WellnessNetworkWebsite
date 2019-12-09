@@ -84,8 +84,10 @@ class SignUpFormBase extends Component {
             <div className="container-fluid ">
             </div>
 
-            <div className="card card-1 shadow col-md-6" >
-            <h1>SignUp</h1>
+            <div className="card-bg" >
+            <h1 class = "hero-text dark">Sign up to be a</h1>
+            <h1 class = "hero-text dark">Content Creator</h1>
+            <p class="text-block-3">Content creators can submit their work to be on the WELLness Network Radio TV</p>
             <form onSubmit={this.onSubmit} >
 
             <div className="form-group card mb-4 box-shadow">
@@ -125,13 +127,14 @@ class SignUpFormBase extends Component {
                 />
                 </div>
                 <div className="form-group">
-                <button disabled={isInvalid} type="submit" className="btn btn-primary">
+                <button disabled={isInvalid} type="submit" className="button-signin">
                     Sign Up
                 </button>
                 </div>
                 {error && <p>{error.message}</p>}
             </form>
             </div>
+
             </div>
         );
     }

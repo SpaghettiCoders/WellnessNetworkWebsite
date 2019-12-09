@@ -5,7 +5,7 @@ import pic from './generic-headshot.png'
 import logo from './logo.jpg'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Particles from "react-particles-js";
-import background from "./template.png"
+import background from "./Yoga-group-Small.jpg"
 import kam from "./pamela_koons.jpg"
 import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
@@ -173,34 +173,52 @@ render ()  {
               </div>
 </div>
 
-<div class="container jumbotron text-center">
 
+<div class="archive">
+  <div class="containter-3 w-container">
+    <div class="w-row">
+       <div class="w-col w-col-6">
+          <h1 class="hero-text heading1light">Missed a Show?</h1>
+          <h1 class="hero-text heading1light">Catch up here!</h1>
+       </div>
+       <div class="w-col w-col-6">
+          <iframe width="450" height="310"
+              src="https://www.youtube.com/embed/pHIKx_qJQXg">
+          </iframe>
+        </div>       
+    </div>
+  </div>
+</div>
 
-
-
-          <h1 class="jumbotron-heading">Podcasters</h1>
-          <p class="lead text-muted">Something short and leading about 
-the collection below—its contents, the creator, etc. Make it short and 
-sweet, but not too short so folks don't simply skip over it entirely.</p>
-          <p>
-            <a href="#" class="btn btn-primary my-2">Main call to action</a>
-            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-          </p>
-        </div>
-
-
-<div className="row">
-
-
-
-            <UserList users={users} />
-
-            </div>
-
-
-            </div>
-
-
+<div class="show-schedule">
+<div class="container-4 w-container">
+  <h1 class="hero-text heading1">Our Speakers</h1>
+  <div class="w-layout-grid grid">
+    <div id="w-node-cfcba1dfc572-49e8e012" data-w-id="d8cd7f8a-a034-b493-25f9-cfcba1dfc572" class="speaker-profile pamela">
+      <div class="card-highlight"></div>
+      <div class="speaker-profile-picture pamela"></div>
+      <h4 class="hero-text speaker-profile">Pamela D Koons</h4>
+      <p class="hero-subtitle speaker-profile paragraph"><a href="#" class="link">Listen to Recorded Shows</a></p>
+    </div>
+    <div id="w-node-bf755ed309a9-5ed309a9" data-w-id="761fe112-cfde-5223-c3c3-bf755ed309a9" class="speaker-profile">
+      <div class="card-highlight"></div>
+      <div class="speaker-profile-picture"></div>
+      <h4 class="hero-text speaker-profile">Name Name</h4>
+      <p class="hero-subtitle speaker-profile paragraph"><a href="#" class="link">Listen to Recorded Shows</a></p>
+    </div>
+    <div id="w-node-6763351ee446-49e8e012" data-w-id="5652ad80-e62b-6aa4-b58e-6763351ee446" class="speaker-profile">
+      <div class="card-highlight"></div>
+      <div class="speaker-profile-picture"></div>
+      <h4 class="hero-text speaker-profile">Name Name</h4>
+      <p class="hero-subtitle speaker-profile paragraph"><a href="#" class="link">Listen to Recorded Shows</a></p>
+    </div><a href="content-creators/show-schedule.html" id="w-node-9b333cb33e95-49e8e012" data-w-id="ba3ab93c-3579-d2e6-f83c-9b333cb33e95" class="button small w-button">Show all</a></div>
+  <div data-w-id="defb86b6-438c-bf01-1837-b8fbfbeaddfd" class="expand-button">
+    <div class="div-block-10 up"></div>
+    <div class="div-block-10"></div>
+  </div>
+</div>
+</div>
+</div>
     
 
 
