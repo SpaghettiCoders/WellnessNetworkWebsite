@@ -38,6 +38,9 @@ const NavigationAuthAdmin = () => (
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href={ROUTES.ABOUT}>About</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href={ROUTES.ACCOUNT}>Account</a>
                     </li>
@@ -74,6 +77,9 @@ const NavigationAuth = () => (
               <span class="sr-only">(current)</span>
             </a>
           </li>
+            <li className="nav-item">
+                <a className="nav-link" href={ROUTES.ABOUT}>About</a>
+            </li>
           <li class="nav-item">
             <a class="nav-link" href={ROUTES.ACCOUNT}>Account</a>
           </li>
@@ -105,6 +111,9 @@ const NavigationNonAuth = () => (
               <span class="sr-only">(current)</span>
             </a>
           </li>
+            <li className="nav-item">
+                <a className="nav-link" href={ROUTES.ABOUT}>About</a>
+            </li>
           <li class="nav-item">
             <a class="nav-link" href={ROUTES.SIGN_IN}>Sign In</a>
           </li>

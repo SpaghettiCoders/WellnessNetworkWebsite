@@ -9,6 +9,7 @@ import SignUpPage from '../SignUp';
 import SignInPage from '../SignIn';
 import PasswordForgetPage from '../PasswordForget';
 import HomePage from '../Home';
+import AboutPage from '../About';
 import AccountPage from '../Account';
 import AdminPage from '../Admin';
 import ContactPage from '../Contact';
@@ -56,6 +57,7 @@ class App extends Component {
                         <Route path={ROUTES.ACCOUNT} component={AccountPage} />
                         <Route path={ROUTES.ADMIN} component={AdminPage} />
                         <Route path={ROUTES.CONTACT} component={ContactPage} />
+                        <Route path={ROUTES.ABOUT} component={AboutPage} />
                         <Route component={User} />
                         </Switch>
                     </div>
