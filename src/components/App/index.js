@@ -16,6 +16,7 @@ import { AuthUserContext } from '../Session';
 import * as ROUTES from '../../constants/routes';
 import { withFirebase } from '../Firebase';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Newsletter from '../NewsLetter';
 
 
 class App extends Component {
@@ -53,6 +54,7 @@ class App extends Component {
                             <Route path={ROUTES.HOME} component={HomePage} />
                             <Route path={ROUTES.ACCOUNT} component={AccountPage} />
                             <Route path={ROUTES.ADMIN} component={AdminPage} />
+                            <Route path={ROUTES.NEWSLETTER} component={Newsletter}/>
                             <Route component={User} />
                         </Switch>
                     </div>
