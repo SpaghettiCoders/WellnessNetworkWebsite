@@ -26,11 +26,11 @@ class NewsletterEditor extends Component {
         return (
             <div style={{margin:"auto", width:"100%"}}>
                 <input
-                       onClick={this.toggleNewsletterEditor}
-                       value={this.state.newsletterButtonText}
-                       type="button"
-                       className="btn btn-outline-primary"
-                       />
+                    onClick={this.toggleNewsletterEditor}
+                    value={this.state.newsletterButtonText}
+                    type="button"
+                    className="btn btn-outline-primary"
+                />
                 { !this.state.newsletterIsHidden ? <NewsletterMenu firebase={this.props.firebase} /> : null }
             </div>
         );
@@ -49,7 +49,7 @@ const NewsletterMenu = ({firebase}) => {
         month = `0${month}`
     }
     let today=`${year}-${month}-${day}`
-    
+
     const [titleOfNewsletterToBeDeleted, setTitleOfNewsletterToBeDeleted] = useState('');
     const [dateOfNewsletterToBeDeleted, setDateOfNewsletterToBeDeleted] = useState('');
 
@@ -76,7 +76,7 @@ const NewsletterMenu = ({firebase}) => {
         if(titleOfNewsletterToBeAdded == '') {
             window.alert("A title must be provided");
         }
-        //ADD DATABASE STUFF HERE
+            //ADD DATABASE STUFF HERE
         //ASK COREY ABOUT HOW TO GO ABOUT THIS
         else {
             firebase.insertNewsLetters(`${contentOfNewsletterToBeAdded}`, `${dateOfNewsletterToBeAdded}`, `${linkedVideoOfNewsletterToBeAdded}`, `${titleOfNewsletterToBeAdded}`)
