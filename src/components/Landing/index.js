@@ -167,7 +167,7 @@ render ()  {
 
 <img src={background} className="img-fluid img-responsive" alt="Responsive image" style={{flex:1}}/>
  <div class="carousel-caption">
-              <h1>At the Wellness Network</h1>
+              <h1 class="hero-text">At the WELLness Network</h1>
               <h3>Radio TV</h3>
               <h5>Our goal at At The WELLnessRadioTV is to enlighten viewers and listeners by bringing them stories and advice from global leaders in health, wellness and holistic living. We will save lives and bring back a quality of life by promoting emotional and physical wellbeing.</h5>
               </div>
@@ -195,19 +195,16 @@ render ()  {
   <h1 class="hero-text heading1">Our Speakers</h1>
   <div class="w-layout-grid grid">
     <div id="w-node-cfcba1dfc572-49e8e012" data-w-id="d8cd7f8a-a034-b493-25f9-cfcba1dfc572" class="speaker-profile pamela">
-      <div class="card-highlight"></div>
       <div class="speaker-profile-picture pamela"></div>
       <h4 class="hero-text speaker-profile">Pamela D Koons</h4>
       <p class="hero-subtitle speaker-profile paragraph"><a href="#" class="link">Listen to Recorded Shows</a></p>
     </div>
     <div id="w-node-bf755ed309a9-5ed309a9" data-w-id="761fe112-cfde-5223-c3c3-bf755ed309a9" class="speaker-profile">
-      <div class="card-highlight"></div>
       <div class="speaker-profile-picture"></div>
       <h4 class="hero-text speaker-profile">Name Name</h4>
       <p class="hero-subtitle speaker-profile paragraph"><a href="#" class="link">Listen to Recorded Shows</a></p>
     </div>
     <div id="w-node-6763351ee446-49e8e012" data-w-id="5652ad80-e62b-6aa4-b58e-6763351ee446" class="speaker-profile">
-      <div class="card-highlight"></div>
       <div class="speaker-profile-picture"></div>
       <h4 class="hero-text speaker-profile">Name Name</h4>
       <p class="hero-subtitle speaker-profile paragraph"><a href="#" class="link">Listen to Recorded Shows</a></p>

@@ -3,7 +3,7 @@ import { withFirebase } from '../Firebase';
 import {withAuthorization} from "../Session";
 import NewsletterEditor from '../NewsletterEditor';
 import { Container, Row, Col, Table, InputGroup, InputGroupAddon, Button, Input } from 'reactstrap';
-import background from "./back.png"
+import background from "./back2.png"
 
 class AdminPage extends Component {
     constructor(props) {

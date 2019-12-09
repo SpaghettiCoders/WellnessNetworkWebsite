@@ -7,16 +7,29 @@ import PodcastRequest from "../PodcastRequest";
 class Account extends Component {
     render() {
         return (
+            <body class="body-2">
             <div>
-                <br/>
-                <br/>
-                <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <div class="container">
+            <h2 class="hero-text-heading1">At the WELLness Network Account Manager</h2>
                 <form>
-                    <PasswordForgetForm/>
+                    <br/>
                     <PasswordChangeForm/>
+                    <br/>
                     <PodcastRequest/>
                 </form>
             </div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            </div>
+            </body>
         );
     }
 }

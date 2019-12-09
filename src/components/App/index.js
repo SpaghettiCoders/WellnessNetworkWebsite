@@ -9,14 +9,17 @@ import SignUpPage from '../SignUp';
 import SignInPage from '../SignIn';
 import PasswordForgetPage from '../PasswordForget';
 import HomePage from '../Home';
+import AboutPage from '../About';
 import AccountPage from '../Account';
 import AdminPage from '../Admin';
+import ContactPage from '../Contact';
 import User from '../User';
 import { AuthUserContext } from '../Session';
 import * as ROUTES from '../../constants/routes';
 import { withFirebase } from '../Firebase';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Newsletter from '../NewsLetter';
+import Contact from "../Contact";
 
 
 class App extends Component {
@@ -53,6 +56,7 @@ class App extends Component {
                             <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
                             <Route path={ROUTES.HOME} component={HomePage} />
                             <Route path={ROUTES.ACCOUNT} component={AccountPage} />
+                            <Route path={ROUTES.CONTACT} component={ContactPage} />
                             <Route path={ROUTES.ADMIN} component={AdminPage} />
                             <Route path={ROUTES.NEWSLETTER} component={Newsletter}/>
                             <Route component={User} />

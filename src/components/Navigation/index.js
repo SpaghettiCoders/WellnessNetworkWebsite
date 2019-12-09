@@ -38,6 +38,9 @@ const NavigationAuthAdmin = () => (
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href={ROUTES.ABOUT}>About</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href={ROUTES.ACCOUNT}>Account</a>
                     </li>
@@ -50,6 +53,9 @@ const NavigationAuthAdmin = () => (
                     <li class="nav-item">
                         <a class="nav-link" href={ROUTES.SIGN_UP}>Sign Up</a>
                     </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href={ROUTES.CONTACT}>Contact Us</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -59,7 +65,7 @@ const NavigationAuthAdmin = () => (
 const NavigationAuth = () => (
     <nav className="navbar navbar-expand-lg navbar-light shadow fixed-top">
       <div class="container">
-      <a class="navbar-brand" href={ROUTES.LANDING}><img src={logo} width="120" alt="" class="logo"/></a>
+      <a class="navbar-brand" href={ROUTES.LANDING}><img src={logo} width="120" height="90"/></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" >
         <span class="navbar-toggler-icon">
         </span>
@@ -71,6 +77,9 @@ const NavigationAuth = () => (
               <span class="sr-only">(current)</span>
             </a>
           </li>
+            <li className="nav-item">
+                <a className="nav-link" href={ROUTES.ABOUT}>About</a>
+            </li>
           <li class="nav-item">
             <a class="nav-link" href={ROUTES.ACCOUNT}>Account</a>
           </li>
@@ -81,6 +90,9 @@ const NavigationAuth = () => (
           <li class="nav-item">
             <a class="nav-link" href={ROUTES.SIGN_UP}>Sign Up</a>
           </li>
+            <li className="nav-item">
+                <a className="nav-link" href={ROUTES.CONTACT}>Contact Us</a>
+            </li>
         </ul>
       </div>
     </div>
@@ -105,11 +117,17 @@ const NavigationNonAuth = () => (
                 <a className="nav-link" href={ROUTES.NEWSLETTER}>News Letter</a>
             </li>
           <li class="nav-item">
+              <a className="nav-link" href={ROUTES.ABOUT}>About</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href={ROUTES.SIGN_IN}>Sign In</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href={ROUTES.SIGN_UP}>Sign Up</a>
           </li>
+            <li className="nav-item">
+                <a className="nav-link" href={ROUTES.CONTACT}>Contact Us</a>
+            </li>
         </ul>
       </div>
     </div>

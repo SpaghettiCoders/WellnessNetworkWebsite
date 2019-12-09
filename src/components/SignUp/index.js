@@ -83,7 +83,7 @@ class SignUpFormBase extends Component {
             <div className="row d-flex justify-content-center">
             <div className="container-fluid ">
             </div>
-
+            <br/>
             <div className="card-bg" >
             <h1 class = "hero-text dark">Sign up to be a</h1>
             <h1 class = "hero-text dark">Content Creator</h1>
