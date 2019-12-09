@@ -210,6 +210,7 @@ class AdminPage extends Component {
                         <NewsletterEditor/>
                     </div>
                 </div>
+            </div>
         );
     }
 }
@@ -297,16 +298,14 @@ const UserRequest = ({requests}) => (
                         <strong>UserID: </strong>
                         {request.value.userID}
                     </li>
-
                 </ul>
             </li>
-
         ))}
     </ul>
 );
 
 const UserFiles = ({files}) => (
-    <ul  className="list-group">
+    <ul className="list-group">
         {files.map(file => (
             <li key={file.uid} className="list-group-item  justify-content-between align-items-center">
                 <span className="badge badge-primary">
