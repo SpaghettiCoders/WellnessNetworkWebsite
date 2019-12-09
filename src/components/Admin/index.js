@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
 import {withAuthorization} from "../Session";
 import NewsletterEditor from '../NewsletterEditor';
-import { Container, Row, Col, Table, InputGroup, InputGroupAddon, Button, Input } from 'reactstrap';
+import { Container, Row, Col, Table, InputGroup, InputGroupAddon, Button, Input, Alert } from 'reactstrap';
 import background from "./back.png"
 
 class AdminPage extends Component {
@@ -60,34 +60,29 @@ class AdminPage extends Component {
         var uid = document.getElementById("userFormInput").value;
         this.getUserRequests(uid);
         this.getUserFiles(uid);
+        if(this.state.userRequest.length == 0 && this.state.userFiles.length == 0) {
+            window.alert("User does not have any information");
+        }
+        else if (this.state.userRequest.length == 0 ) {
+            window.alert("User has 0 requests");
+        }
+        else if (this.state.userFiles.length == 0){
+            window.alert("User has 0 files");
+        }
     }
 
     getAllRequests() {
-        if (this.state.requests.length !== 0) {
-            this.setState({
-                requests: [],
-            })
-        }
-        else {
-            const query = this.props.firebase.getElementsInPath('requests');
-            this.setState({
-                requests: query,
-            })
-        }
+        const query = this.props.firebase.getElementsInPath('requests');
+        this.setState({
+            requests: query,
+        })
     }
 
     getAllUsers() {
-        if (this.state.users.length !== 0) {
-            this.setState({
-                users: [],
-            })
-        }
-        else {
-            const query = this.props.firebase.getElementsInPath('users');
-            this.setState({
-                users: query,
-            })
-        }
+        const query = this.props.firebase.getElementsInPath('users');
+        this.setState({
+            users: query,
+        })
     }
 
     render() {
@@ -189,7 +184,7 @@ class AdminPage extends Component {
                                     <InputGroup>
                                         <Input id="requestInputForm"/>
                                         <InputGroupAddon addonType="append">
-                                            <Button color="danger" onClick={() => this.deleteRequest()}>
+                                            <Button color="danger" onClick={() => { if (window.confirm('Are you sure you wish to delete this request?')) this.deleteRequest()} }>
                                                 DELETE
                                             </Button>
                                         </InputGroupAddon>
@@ -202,7 +197,7 @@ class AdminPage extends Component {
                                     <InputGroup>
                                         <Input id="fileInputForm"/>
                                         <InputGroupAddon addonType="append">
-                                            <Button color="danger" onClick={() => this.deleteFile()}>
+                                            <Button color="danger" onClick={() => { if (window.confirm('Are you sure you wish to delete this file?')) this.deleteFile()} }>
                                                 DELETE
                                             </Button>
                                         </InputGroupAddon>
