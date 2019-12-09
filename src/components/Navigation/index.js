@@ -48,6 +48,10 @@ const NavigationAuthAdmin = () => (
                     <SignOutButton/>
 
                     <li className="nav-item">
+                        <a className="nav-link" href={ROUTES.NEWSLETTER}>News Letter</a>
+                    </li>
+
+                    <li className="nav-item">
                         <a className="nav-link" href={ROUTES.ADMIN}>Admin</a>
                     </li>
                     <li class="nav-item">

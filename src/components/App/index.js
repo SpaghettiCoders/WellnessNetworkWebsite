@@ -59,6 +59,7 @@ class App extends Component {
                             <Route path={ROUTES.CONTACT} component={ContactPage} />
                             <Route path={ROUTES.ADMIN} component={AdminPage} />
                             <Route path={ROUTES.NEWSLETTER} component={Newsletter}/>
+                            <Route path={ROUTES.ABOUT} component={AboutPage}/>
                             <Route component={User} />
                         </Switch>
                     </div>
