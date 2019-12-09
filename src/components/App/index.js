@@ -11,11 +11,13 @@ import PasswordForgetPage from '../PasswordForget';
 import HomePage from '../Home';
 import AccountPage from '../Account';
 import AdminPage from '../Admin';
+import ContactPage from '../Contact';
 import User from '../User';
 import { AuthUserContext } from '../Session';
 import * as ROUTES from '../../constants/routes';
 import { withFirebase } from '../Firebase';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Contact from "../Contact";
 
 
 class App extends Component {
@@ -43,17 +45,18 @@ class App extends Component {
             <AuthUserContext.Provider value={this.state.authUser}>
                 <Router>
                     <div>
-                        <Navigation authUser={this.state.authUser} />
-                        <Switch>
-
-                            <Route exact path={ROUTES.LANDING} component={LandingPage} />
-                            <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
-                            <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-                            <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
-                            <Route path={ROUTES.HOME} component={HomePage} />
-                            <Route path={ROUTES.ACCOUNT} component={AccountPage} />
-                            <Route path={ROUTES.ADMIN} component={AdminPage} />
-                            <Route component={User} />
+                    <Navigation authUser={this.state.authUser} />
+                    <Switch>
+                        
+                        <Route exact path={ROUTES.LANDING} component={LandingPage} />
+                        <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
+                        <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+                        <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
+                        <Route path={ROUTES.HOME} component={HomePage} />
+                        <Route path={ROUTES.ACCOUNT} component={AccountPage} />
+                        <Route path={ROUTES.ADMIN} component={AdminPage} />
+                        <Route path={ROUTES.CONTACT} component={ContactPage} />
+                        <Route component={User} />
                         </Switch>
                     </div>
                 </Router>
