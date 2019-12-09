@@ -3,19 +3,33 @@ import { PasswordForgetForm } from '../PasswordForget';
 import PasswordChangeForm from '../PasswordChange';
 import { AuthUserContext, withAuthorization } from '../Session';
 import PodcastRequest from "../PodcastRequest";
+import background from "../Account/test.jpg";
+
+
+const sectionStyle = {
+    backgroundImage: `url(${background})`,
+    height: "665px",
+    width: "100%",
+    backgroundSize: "contain"
+
+};
 
 class Account extends Component {
+
+
     render() {
         return (
-            <div>
+            <div className="img-fluid col-md-12 img-fluid"style={sectionStyle}>
+                <div className = "col-centered col-md-12 text-md-center ">
             <br/>
             <br/>
             <br/>
                 <form>
-                    <PasswordForgetForm/>
                     <PasswordChangeForm/>
+                    <br/>
                     <PodcastRequest/>
                 </form>
+                </div>
             </div>
         );
     }

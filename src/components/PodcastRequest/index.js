@@ -60,39 +60,56 @@ class PodcastRequest extends Component {
     render() {
         const { name, description, reqID } = this.state;
         return (
-            <form onSubmit={this.onSubmit}>
-                <input
-                    name="name"
-                    value={name}
-                    onChange={this.onChange}
-                    type="text"
-                    placeholder="Name"
-                />
-                <input
-                    name="description"
-                    value={description}
-                    onChange={this.onChange}
-                    type="text"
-                    placeholder="Description"
-                />
-                <input
-                    name="reqID"
-                    value={reqID}
-                    onChange={this.onChange}
-                    type="text"
-                    placeholder="Request ID"
-                />
-                <FileUploader
-                    accept="audio/*"
-                    name="avatar"
-                    randomizeFilename
-                    storageRef={firebase.storage().ref("audio")}
-                    onUploadStart={this.handleUploadStart}
-                    onUploadError={this.handleUploadError}
-                    onUploadSuccess={this.handleUploadSuccess}
-                    onProgress={this.handleProgress}
-                />
-            </form>
+            <div className="container">
+                <div className="card card-1 shadow col-md-6" >
+                    <h1>Podcast Request</h1>
+                    <form onSubmit={this.onSubmit}>
+                        <div className="form-group">
+                        <input
+                            name="name"
+                            value={name}
+                            onChange={this.onChange}
+                            type="text"
+                            placeholder="Name"
+                        />
+                        </div>
+                        <div className="form-group">
+                        <input
+                            name="description"
+                            value={description}
+                            onChange={this.onChange}
+                            type="text"
+                            placeholder="Description"
+                        />
+                        </div>
+                        <div className="form-group">
+                        <input
+                            name="reqID"
+                            value={reqID}
+                            onChange={this.onChange}
+                            type="text"
+                            placeholder="Request ID"
+                        />
+                        </div>
+                        <div className="form-group">
+                        <FileUploader
+                            accept="audio/*"
+                            name="avatar"
+                            randomizeFilename
+                            storageRef={firebase.storage().ref("audio")}
+                            onUploadStart={this.handleUploadStart}
+                            onUploadError={this.handleUploadError}
+                            onUploadSuccess={this.handleUploadSuccess}
+                            onProgress={this.handleProgress}
+                        />
+                        </div>
+                        <button type="submit" className="btn btn-primary">
+                            Send Request
+                        </button>
+                    </form>
+                </div>
+            </div>
+
         );
     }
 }
