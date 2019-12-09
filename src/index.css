@@ -133,7 +133,6 @@ img {
   padding-top: 0px;
 }
 
-
 .navbar-link {
   margin-top: 14px;
   padding: 5px 13px 5px 12px;
@@ -314,7 +313,9 @@ img {
 }
 
 .container {
-  padding: 24px 0px;
+  padding: 20px 0px;
+  margin-top: -30px;
+  margin-bottom: -55px;
   background-color: transparent;
 }
 
@@ -512,7 +513,7 @@ img {
 .speaker-profile-picture.pamela {
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
- /* background-image: url('../components/images/pamela_koons.jpg');*/
+  background-image: url('../src/components/images/pamela_koons.jpg');
   background-position: 100% 50%;
   background-size: cover;
   background-repeat: no-repeat;

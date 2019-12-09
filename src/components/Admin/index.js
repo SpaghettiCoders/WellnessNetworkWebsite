@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
 import {withAuthorization} from "../Session";
 import NewsletterEditor from '../NewsletterEditor';
-import background from "./back.png"
+import background from "./back2.png"
 
 class AdminPage extends Component {
     constructor(props) {

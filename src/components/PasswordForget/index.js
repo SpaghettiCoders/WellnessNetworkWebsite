@@ -3,11 +3,37 @@ import { Link } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 const PasswordForgetPage = () => (
+    <body class="body-2">
     <div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <div className="row d-flex justify-content-center">
+            <div className="container-fluid ">
+            </div>
+        <div className="card-bg card-bg.smaller" >
         <h1>Forgot Your Password?</h1>
         <p>Enter your email below and click "Reset My Password" to receive a password reset link:</p>
         <PasswordForgetForm />
+        </div>
+        </div>
     </div>
+    <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+    </body>
 );
 const INITIAL_STATE = {
     email: '',
@@ -34,9 +60,11 @@ class PasswordForgetFormBase extends Component {
         this.setState({ [event.target.name]: event.target.value });
     };
     render() {
+
         const { email, error } = this.state;
         const isInvalid = email === '';
         return (
+            <div class="card-bg">
             <form onSubmit={this.onSubmit}>
                 <input
                     name="email"
@@ -50,6 +78,7 @@ class PasswordForgetFormBase extends Component {
                 </button>
                 {error && <p>{error.message}</p>}
             </form>
+            </div>
         );
     }
 }
