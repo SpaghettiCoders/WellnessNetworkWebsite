@@ -182,35 +182,31 @@ class AdminPage extends Component {
                     <br/>
 
                     <div>
-                        <Row>
+                        <Row style={{maxWidth:1000, margin:'auto'}}>
                             <Col>
                                 <div className="card card-1 shadow">
-                                    <h4> Delete Request</h4>
-                                    <form className="form-group">
-                                        <input id="requestInputForm"
-                                               type="search"
-                                               placeholder="Request ID"
-                                               aria-label="Search"
-                                        />
-                                    </form>
-                                    <button className="btn btn-outline-primary" onClick={() => this.deleteRequest()}>
-                                        DELETE
-                                    </button>
+                                    <h4 style={{ margin:'auto', maxWidth:500}}> Delete Request</h4>
+                                    <InputGroup>
+                                        <Input id="requestInputForm"/>
+                                        <InputGroupAddon addonType="append">
+                                            <Button color="danger" onClick={() => this.deleteRequest()}>
+                                                DELETE
+                                            </Button>
+                                        </InputGroupAddon>
+                                    </InputGroup>
                                 </div>
                             </Col>
                             <Col>
                                 <div className="card card-1 shadow">
-                                    <h4> Delete File</h4>
-                                    <form className="form-group">
-                                        <input id="fileInputForm"
-                                               type="search"
-                                               placeholder="File ID"
-                                               aria-label="Search"
-                                        />
-                                    </form>
-                                    <button className="btn btn-outline-primary" onClick={() => this.deleteFile()}>
-                                        DELETE
-                                    </button>
+                                    <h4 style={{ margin:'auto',maxWidth:500}}> Delete File</h4>
+                                    <InputGroup>
+                                        <Input id="fileInputForm"/>
+                                        <InputGroupAddon addonType="append">
+                                            <Button color="danger" onClick={() => this.deleteFile()}>
+                                                DELETE
+                                            </Button>
+                                        </InputGroupAddon>
+                                    </InputGroup>
                                 </div>
                             </Col>
                         </Row>
