@@ -5,7 +5,7 @@ import pic from './generic-headshot.png'
 import logo from './logo.jpg'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Particles from "react-particles-js";
-import background from "./template.png"
+import background from "./Yoga-group-Small.jpg"
 import kam from "./pamela_koons.jpg"
 import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
