@@ -50,6 +50,9 @@ const NavigationAuthAdmin = () => (
                     <li class="nav-item">
                         <a class="nav-link" href={ROUTES.SIGN_UP}>Sign Up</a>
                     </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href={ROUTES.CONTACT}>Contact Us</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -79,6 +82,9 @@ const NavigationAuth = () => (
           <li class="nav-item">
             <a class="nav-link" href={ROUTES.SIGN_UP}>Sign Up</a>
           </li>
+            <li className="nav-item">
+                <a className="nav-link" href={ROUTES.CONTACT}>Contact Us</a>
+            </li>
         </ul>
       </div>
     </div>
@@ -105,6 +111,9 @@ const NavigationNonAuth = () => (
           <li class="nav-item">
             <a class="nav-link" href={ROUTES.SIGN_UP}>Sign Up</a>
           </li>
+            <li className="nav-item">
+                <a className="nav-link" href={ROUTES.CONTACT}>Contact Us</a>
+            </li>
         </ul>
       </div>
     </div>
