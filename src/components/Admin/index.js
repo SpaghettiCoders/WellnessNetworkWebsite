@@ -2,12 +2,8 @@ import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
 import {withAuthorization} from "../Session";
 import NewsletterEditor from '../NewsletterEditor';
-<<<<<<< HEAD
-import background from "./back2.png"
-=======
 import { Container, Row, Col, Table, InputGroup, InputGroupAddon, Button, Input } from 'reactstrap';
-import background from "./back.png"
->>>>>>> b177a6547b6bc5cec5775f8c2bed563bbd165480
+import background from "./back2.png"
 
 class AdminPage extends Component {
     constructor(props) {
