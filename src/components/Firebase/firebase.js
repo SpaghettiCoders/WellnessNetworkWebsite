@@ -6,13 +6,13 @@ import {database} from "firebase";
 
 //FireBase config
 const config = {
-      apiKey: "AIzaSyAW6EcHD6NKddCRGs6ynNnkfLh64RIVB9Q",
-      authDomain: "wellness-network-website.firebaseapp.com",
-      databaseURL: "https://wellness-network-website.firebaseio.com",
-      projectId: "wellness-network-website",
-      storageBucket: "wellness-network-website.appspot.com",
-      messagingSenderId: "671256703093",
-      appId: "1:671256703093:web:3f4a8271dab69a0983883c"
+    apiKey: "AIzaSyAW6EcHD6NKddCRGs6ynNnkfLh64RIVB9Q",
+    authDomain: "wellness-network-website.firebaseapp.com",
+    databaseURL: "https://wellness-network-website.firebaseio.com",
+    projectId: "wellness-network-website",
+    storageBucket: "wellness-network-website.appspot.com",
+    messagingSenderId: "671256703093",
+    appId: "1:671256703093:web:3f4a8271dab69a0983883c"
 };
 
 /*
@@ -136,18 +136,13 @@ class Firebase{
         var ref = this.db.ref(path);
         ref.on('value',function (snapshot) {
             snapshot.forEach(function (childSnapshot){
-                    data.push({
-                        uid:childSnapshot.key,
-                        value:childSnapshot.val()
-                    });
+                data.push({
+                    uid:childSnapshot.key,
+                    value:childSnapshot.val()
+                });
             });
         });
         return data;
-    }
-
-    getUserIsAdmin = (user)  => {
-        console.log(user);
-        return true;
     }
 
     // *** User API ***

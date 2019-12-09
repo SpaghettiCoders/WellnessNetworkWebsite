@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
 import {withAuthorization} from "../Session";
 import NewsletterEditor from '../NewsletterEditor';
-import { Container, Row, Col, Table, InputGroup, InputGroupAddon, Button, Input, Alert } from 'reactstrap';
+<<<<<<< HEAD
+import background from "./back2.png"
+=======
+import { Container, Row, Col, Table, InputGroup, InputGroupAddon, Button, Input } from 'reactstrap';
 import background from "./back.png"
+>>>>>>> b177a6547b6bc5cec5775f8c2bed563bbd165480
 
 class AdminPage extends Component {
     constructor(props) {
@@ -15,8 +19,8 @@ class AdminPage extends Component {
             userRequest: [],
             userFiles: [],
         };
-    }
 
+    }
     componentDidMount() {
         this.setState({
             loading: false,
@@ -30,16 +34,20 @@ class AdminPage extends Component {
     }
 
     deleteRequest() {
-        const rid = document.getElementById("requestInputForm").value;
-        this.props.firebase.deleteRequest(rid);
-        this.getUserInformation();
-        this.getAllRequests();
+        if(window.confirm("Are you sure that you want to delete this request?")) {
+            const rid = document.getElementById("requestInputForm").value;
+            this.props.firebase.deleteRequest(rid);
+            this.getUserInformation();
+            this.getAllRequests();
+        }
     }
 
     deleteFile() {
-        const fid = document.getElementById("fileInputForm").value;
-        this.props.firebase.deleteFile(fid);
-        this.getUserInformation();
+        if(window.confirm("Are you sure that you want to delete this file?")) {
+            const fid = document.getElementById("fileInputForm").value;
+            this.props.firebase.deleteFile(fid);
+            this.getUserInformation();
+        }
     }
 
     getUserRequests(uid) {
@@ -60,29 +68,34 @@ class AdminPage extends Component {
         var uid = document.getElementById("userFormInput").value;
         this.getUserRequests(uid);
         this.getUserFiles(uid);
-        if(this.state.userRequest.length == 0 && this.state.userFiles.length == 0) {
-            window.alert("User does not have any information");
-        }
-        else if (this.state.userRequest.length == 0 ) {
-            window.alert("User has 0 requests");
-        }
-        else if (this.state.userFiles.length == 0){
-            window.alert("User has 0 files");
-        }
     }
 
     getAllRequests() {
-        const query = this.props.firebase.getElementsInPath('requests');
-        this.setState({
-            requests: query,
-        })
+        if (this.state.requests.length !== 0) {
+            this.setState({
+                requests: [],
+            })
+        }
+        else {
+            const query = this.props.firebase.getElementsInPath('requests');
+            this.setState({
+                requests: query,
+            })
+        }
     }
 
     getAllUsers() {
-        const query = this.props.firebase.getElementsInPath('users');
-        this.setState({
-            users: query,
-        })
+        if (this.state.users.length !== 0) {
+            this.setState({
+                users: [],
+            })
+        }
+        else {
+            const query = this.props.firebase.getElementsInPath('users');
+            this.setState({
+                users: query,
+            })
+        }
     }
     render() {
 
@@ -183,7 +196,7 @@ class AdminPage extends Component {
                                     <InputGroup>
                                         <Input id="requestInputForm"/>
                                         <InputGroupAddon addonType="append">
-                                            <Button color="danger" onClick={() => { if (window.confirm('Are you sure you wish to delete this request?')) this.deleteRequest()} }>
+                                            <Button color="danger" onClick={() => this.deleteRequest()}>
                                                 DELETE
                                             </Button>
                                         </InputGroupAddon>
@@ -196,7 +209,7 @@ class AdminPage extends Component {
                                     <InputGroup>
                                         <Input id="fileInputForm"/>
                                         <InputGroupAddon addonType="append">
-                                            <Button color="danger" onClick={() => { if (window.confirm('Are you sure you wish to delete this file?')) this.deleteFile()} }>
+                                            <Button color="danger" onClick={() => this.deleteFile()}>
                                                 DELETE
                                             </Button>
                                         </InputGroupAddon>
@@ -225,22 +238,22 @@ const UserList = ({ users }) => (
             </tr>
             </thead>
             <tbody>
-                {users.map(user => (
-                    <tr>
-                        <th key={user.uid} >
+            {users.map(user => (
+                <tr>
+                    <th key={user.uid} >
                             <span className="badge badge-primary">
                                 {user.uid}
                             </span>
-                        </th>
-                            <td>
-                              <strong></strong> {user.value.email}
-                            </td>
-                            <td>
-                              <strong></strong> {user.value.username}
-                            </td>
+                    </th>
+                    <td>
+                        <strong></strong> {user.value.email}
+                    </td>
+                    <td>
+                        <strong></strong> {user.value.username}
+                    </td>
 
-                    </tr>
-                ))}
+                </tr>
+            ))}
             </tbody>
         </Table>
     </ul>
@@ -257,7 +270,7 @@ const RequestList = ({ requests }) => (
             </tr>
             </thead>
             <tbody>
-                {requests.map(request => (
+            {requests.map(request => (
                 <tr>
                     <th key={request.uid}>
                         <span className="badge badge-primary">
@@ -267,7 +280,7 @@ const RequestList = ({ requests }) => (
                     <th>{request.value.name}</th>
                     <th>{request.value.description}</th>
                 </tr>
-                ))}
+            ))}
             </tbody>
         </Table>
 
@@ -298,14 +311,16 @@ const UserRequest = ({requests}) => (
                         <strong>UserID: </strong>
                         {request.value.userID}
                     </li>
+
                 </ul>
             </li>
+
         ))}
     </ul>
 );
 
 const UserFiles = ({files}) => (
-    <ul className="list-group">
+    <ul  className="list-group">
         {files.map(file => (
             <li key={file.uid} className="list-group-item  justify-content-between align-items-center">
                 <span className="badge badge-primary">

@@ -62,7 +62,7 @@ const NavigationAuthAdmin = () => (
 const NavigationAuth = () => (
     <nav className="navbar navbar-expand-lg navbar-light shadow fixed-top">
       <div class="container">
-      <a class="navbar-brand" href={ROUTES.LANDING}><img src={logo} width="120" alt="" class="logo"/></a>
+      <a class="navbar-brand" href={ROUTES.LANDING}><img src={logo} width="120" height="90"/></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" >
         <span class="navbar-toggler-icon">
         </span>
