@@ -18,6 +18,7 @@ import { AuthUserContext } from '../Session';
 import * as ROUTES from '../../constants/routes';
 import { withFirebase } from '../Firebase';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Newsletter from '../NewsLetter';
 import Contact from "../Contact";
 
 
@@ -46,19 +47,19 @@ class App extends Component {
             <AuthUserContext.Provider value={this.state.authUser}>
                 <Router>
                     <div>
-                    <Navigation authUser={this.state.authUser} />
-                    <Switch>
-                        
-                        <Route exact path={ROUTES.LANDING} component={LandingPage} />
-                        <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
-                        <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-                        <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
-                        <Route path={ROUTES.HOME} component={HomePage} />
-                        <Route path={ROUTES.ACCOUNT} component={AccountPage} />
-                        <Route path={ROUTES.ADMIN} component={AdminPage} />
-                        <Route path={ROUTES.CONTACT} component={ContactPage} />
-                        <Route path={ROUTES.ABOUT} component={AboutPage} />
-                        <Route component={User} />
+                        <Navigation authUser={this.state.authUser} />
+                        <Switch>
+
+                            <Route exact path={ROUTES.LANDING} component={LandingPage} />
+                            <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
+                            <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+                            <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
+                            <Route path={ROUTES.HOME} component={HomePage} />
+                            <Route path={ROUTES.ACCOUNT} component={AccountPage} />
+                            <Route path={ROUTES.CONTACT} component={ContactPage} />
+                            <Route path={ROUTES.ADMIN} component={AdminPage} />
+                            <Route path={ROUTES.NEWSLETTER} component={Newsletter}/>
+                            <Route component={User} />
                         </Switch>
                     </div>
                 </Router>

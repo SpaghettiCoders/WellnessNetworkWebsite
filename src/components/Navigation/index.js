@@ -83,7 +83,9 @@ const NavigationAuth = () => (
           <li class="nav-item">
             <a class="nav-link" href={ROUTES.ACCOUNT}>Account</a>
           </li>
-         
+            <li className="nav-item">
+                <a className="nav-link" href={ROUTES.NEWSLETTER}>News Letter</a>
+            </li>
             <SignOutButton/>
           <li class="nav-item">
             <a class="nav-link" href={ROUTES.SIGN_UP}>Sign Up</a>
@@ -112,8 +114,11 @@ const NavigationNonAuth = () => (
             </a>
           </li>
             <li className="nav-item">
-                <a className="nav-link" href={ROUTES.ABOUT}>About</a>
+                <a className="nav-link" href={ROUTES.NEWSLETTER}>News Letter</a>
             </li>
+          <li class="nav-item">
+              <a className="nav-link" href={ROUTES.ABOUT}>About</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href={ROUTES.SIGN_IN}>Sign In</a>
           </li>
