@@ -24,9 +24,9 @@ const Navigation = () => (
 
 
 const NavigationAuth = () => (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
+    <nav className="navbar navbar-expand-lg navbar-light shadow fixed-top">
       <div class="container">
-      <a class="navbar-brand" href={ROUTES.LANDING}><img src={logo} width="70" height="40"/></a>
+      <a class="navbar-brand" href={ROUTES.LANDING}><img src={logo} width="120" alt="" class="logo"/></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" >
         <span class="navbar-toggler-icon">
         </span>
@@ -34,7 +34,7 @@ const NavigationAuth = () => (
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home
+            <a class="nav-link" href="/">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
@@ -56,9 +56,9 @@ const NavigationAuth = () => (
     </nav>
 );
 const NavigationNonAuth = () => (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
+    <nav className="navbar navbar-expand-lg navbar-light shadow fixed-top">
       <div class="container">
-      <a class="navbar-brand" href={ROUTES.LANDING}><img src={logo} width="70" height="40"/></a>
+      <a class="navbar-brand" href={ROUTES.LANDING}><img src={logo} width="120" height="90"/></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" >
         <span class="navbar-toggler-icon">
         </span>
@@ -66,12 +66,9 @@ const NavigationNonAuth = () => (
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home
+            <a class="nav-link" href="/">Home
               <span class="sr-only">(current)</span>
             </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href={ROUTES.SIGN_IN}>Account</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href={ROUTES.SIGN_IN}>Sign In</a>

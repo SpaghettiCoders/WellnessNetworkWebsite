@@ -106,11 +106,11 @@ class AdminPage extends Component {
                     <br/>
                     <br/>
                     <div className="container">
-                        <div className="card card-1 shadow">
+                        <div className="button shadow">
                             <button className="btn btn-outline-primary" onClick={() => this.getAllUsers()}>
                                 LOAD USERS
                             </button>
-                            <div className="card card-1 shadow  overflow-auto">
+                            <div className="card-bg shadow  overflow-auto">
                                 <h4>Users List</h4>
                                 <UserList users={users}/>
                             </div>
@@ -119,7 +119,7 @@ class AdminPage extends Component {
                     
                     </div>
                     <br/>
-                    <div className="container card card-1 shadow">
+                    <div className="card-bg card-bg.smaller shadow">
                         <h4> Delete Request</h4>
                         <form className="form-group">
                             <input id="requestInputForm"
@@ -133,7 +133,7 @@ class AdminPage extends Component {
                         </button>
                     </div>
                     <br/>
-                    <div className="container card card-1 shadow">
+                    <div className="card-bg card-bg.smaller shadow">
                         <h4> Delete File</h4>
                         <form className="form-group">
                             <input id="fileInputForm"
@@ -147,7 +147,7 @@ class AdminPage extends Component {
                         </button>
                     </div>
                     <br/>
-                    <div className="container card card-1 shadow">
+                    <div className="card-bg card-bg.smaller shadow">
                         <NewsletterEditor/>
                     </div>
                 </div>
