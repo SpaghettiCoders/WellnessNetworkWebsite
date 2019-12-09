@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
 import {withAuthorization} from "../Session";
 import NewsletterEditor from '../NewsletterEditor';
+import { Container, Row, Col, Table, InputGroup, InputGroupAddon, Button, Input } from 'reactstrap';
 import background from "./back.png"
 
 class AdminPage extends Component {
@@ -92,11 +93,11 @@ class AdminPage extends Component {
     render() {
 
         const sectionStyle = {
-            backgroundImage: `url(${background})`,
-            height: "665px",
+            //backgroundImage: `url(${background})`,
+            backgroundColor: "white",
             width: "100%",
-            backgroundSize: "contain"
-
+            backgroundSize: "30%",
+            backgroundRepeat : "repeat",
         }
 
         const ListStyle = {
@@ -105,7 +106,7 @@ class AdminPage extends Component {
 
         const adminHeaderStyle = {
             textAlign: "center",
-            color: "blue",
+            color: "#307DFF",
         }
 
         const {users,requests, loading, userRequest, userFiles} = this.state;
@@ -119,82 +120,103 @@ class AdminPage extends Component {
                     <br/>
                     <br/>
                     <br/>
-                    <div className="container">
-                        <div className="card card-1 shadow">
-                            <button className="btn btn-outline-primary" onClick={() => this.getAllUsers()}>
-                                LOAD USERS
-                            </button>
-                            <div className="card card-1 shadow  overflow-auto">
-                                <h4>Users List</h4>
-                                <UserList users={users}/>
-                            </div>
-                        </div>
-                    </div>
-                    <br/>
-                    <div className="container">
-                        <div className="card card-1 shadow">
-                            <button className="btn btn-outline-primary" onClick={() => this.getAllRequests()}>
-                                LOAD REQUESTS
-                            </button>
-                            <div className="card card-1 shadow  overflow-auto">
-                                <h4>Requests List</h4>
-                                <RequestList requests={requests}/>
-                            </div>
-                        </div>
-                    </div>
-                    <br/>
-                    <div className="container card card-1 shadow">
-                        <h4> User</h4>
-                        <form className="form-group">
-                            <input id="userFormInput"
-                                   type="search"
-                                   placeholder="User ID"
-                                   aria-label="Search"
-                            />
-                        </form>
-                        <button className="btn btn-outline-primary" onClick={() => this.getUserInformation()}>
-                            GET INFORMATION
-                        </button>
-                        <div className="card card-1 shadow  overflow-auto">
-                            <h4>User Requests</h4>
-                            <UserRequest requests={userRequest}/>
-                        </div>
 
-                        <div className="card card-1 shadow  overflow-auto">
-                            <h4>User Files</h4>
-                            <UserFiles files={userFiles}/>
-                        </div>
+                    <div>
+                        <Row>
+                            <Col>
+                                <div className="card card-1 shadow">
+                                    <button className="btn btn-outline-primary" onClick={() => this.getAllUsers()}>
+                                        LOAD USERS
+                                    </button>
+                                    <div className="card card-1 shadow  overflow-auto">
+                                        <UserList users={users}/>
+                                    </div>
+                                </div>
+                            </Col>
+                            <Col>
+                                <div className="card card-1 shadow">
+                                    <button className="btn btn-outline-primary" onClick={() => this.getAllRequests()}>
+                                        LOAD REQUESTS
+                                    </button>
+                                    <div className="card card-1 shadow  overflow-auto">
+                                        <RequestList requests={requests}/>
+                                    </div>
+                                </div>
+                            </Col>
+                        </Row>
                     </div>
                     <br/>
-                    <div className="container card card-1 shadow">
-                        <h4> Delete Request</h4>
-                        <form className="form-group">
-                            <input id="requestInputForm"
-                                   type="search"
-                                   placeholder="Request ID"
-                                   aria-label="Search"
-                            />
-                        </form>
-                        <button className="btn btn-outline-primary" onClick={() => this.deleteRequest()}>
-                            DELETE
-                        </button>
+
+                    <div className="card card-1 shadow">
+                        <h4 style={{margin: 'auto'}}> User</h4>
+                        <br/>
+                        <Row>
+                            <Col style={{maxWidth:500, margin:'auto'}}>
+                                <InputGroup>
+                                    <Input id="userFormInput"/>
+                                    <InputGroupAddon addonType="append">
+                                        <Button color="primary" onClick={() => this.getUserInformation()}>
+                                            GET INFORMATION
+                                        </Button>
+                                    </InputGroupAddon>
+                                </InputGroup>
+                            </Col>
+                        </Row>
+                        <br/>
+                        <Row>
+                            <Col>
+                                <div className="card card-1 shadow  overflow-auto">
+                                    <h4 style={{margin:"auto"}}>User Requests</h4>
+                                    <UserRequest requests={userRequest}/>
+                                </div>
+                            </Col>
+                            <Col>
+                                <div className="card card-1 shadow  overflow-auto">
+                                    <h4 style={{margin:"auto"}}>User Files</h4>
+                                    <UserFiles files={userFiles}/>
+                                </div>
+                            </Col>
+                        </Row>
+                        <br/>
                     </div>
                     <br/>
-                    <div className="container card card-1 shadow">
-                        <h4> Delete File</h4>
-                        <form className="form-group">
-                            <input id="fileInputForm"
-                                   type="search"
-                                   placeholder="Request ID"
-                                   aria-label="Search"
-                            />
-                        </form>
-                        <button className="btn btn-outline-primary" onClick={() => this.deleteFile()}>
-                            DELETE
-                        </button>
+
+                    <div>
+                        <Row>
+                            <Col>
+                                <div className="card card-1 shadow">
+                                    <h4> Delete Request</h4>
+                                    <form className="form-group">
+                                        <input id="requestInputForm"
+                                               type="search"
+                                               placeholder="Request ID"
+                                               aria-label="Search"
+                                        />
+                                    </form>
+                                    <button className="btn btn-outline-primary" onClick={() => this.deleteRequest()}>
+                                        DELETE
+                                    </button>
+                                </div>
+                            </Col>
+                            <Col>
+                                <div className="card card-1 shadow">
+                                    <h4> Delete File</h4>
+                                    <form className="form-group">
+                                        <input id="fileInputForm"
+                                               type="search"
+                                               placeholder="File ID"
+                                               aria-label="Search"
+                                        />
+                                    </form>
+                                    <button className="btn btn-outline-primary" onClick={() => this.deleteFile()}>
+                                        DELETE
+                                    </button>
+                                </div>
+                            </Col>
+                        </Row>
                     </div>
                     <br/>
-                    <div className="container card card-1 shadow">
+                    <div className="card card-1 shadow">
                         <NewsletterEditor/>
                     </div>
                 </div>
@@ -204,37 +226,61 @@ class AdminPage extends Component {
 }
 const UserList = ({ users }) => (
     <ul className="list-group">
-        {users.map(user => (
-        <li key={user.uid} className="list-group-item d-flex justify-content-between align-items-center">
-            <span className="badge badge-primary">
-              <strong>ID:</strong> {user.uid}
-            </span>
-            <span>
-              <strong></strong> {user.value.email}
-            </span>
-            <span>
-              <strong></strong> {user.value.username}
-            </span>
-        </li>
-        ))}
+        <Table striped>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>EMAIL</th>
+                <th>USERNAME</th>
+            </tr>
+            </thead>
+            <tbody>
+                {users.map(user => (
+                    <tr>
+                        <th key={user.uid} >
+                            <span className="badge badge-primary">
+                                {user.uid}
+                            </span>
+                        </th>
+                            <td>
+                              <strong></strong> {user.value.email}
+                            </td>
+                            <td>
+                              <strong></strong> {user.value.username}
+                            </td>
+
+                    </tr>
+                ))}
+            </tbody>
+        </Table>
     </ul>
 );
 
 const RequestList = ({ requests }) => (
     <ul className="list-group">
-        {requests.map(request => (
-        <li key={request.uid} className="list-group-item d-flex justify-content-between align-items-center">
-            <span className="badge badge-primary">
-              <strong>ID:</strong> {request.uid}
-            </span>
-            <span>
-              <strong></strong> {request.value.name}
-            </span>
-            <span>
-              <strong></strong> {request.value.description}
-            </span>
-        </li>
-        ))}
+        <Table striped>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>DESCRIPTION</th>
+            </tr>
+            </thead>
+            <tbody>
+                {requests.map(request => (
+                <tr>
+                    <th key={request.uid}>
+                        <span className="badge badge-primary">
+                                {request.uid}
+                        </span>
+                    </th>
+                    <th>{request.value.name}</th>
+                    <th>{request.value.description}</th>
+                </tr>
+                ))}
+            </tbody>
+        </Table>
+
     </ul>
 );
 

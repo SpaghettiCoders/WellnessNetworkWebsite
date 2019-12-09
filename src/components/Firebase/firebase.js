@@ -145,6 +145,11 @@ class Firebase{
         return data;
     }
 
+    getUserIsAdmin = (user)  => {
+        console.log(user);
+        return true;
+    }
+
     // *** User API ***
     user = uid => this.db.ref(`users/${uid}`);
     users = () => this.db.ref('users');
