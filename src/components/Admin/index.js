@@ -30,16 +30,20 @@ class AdminPage extends Component {
     }
 
     deleteRequest() {
-        const rid = document.getElementById("requestInputForm").value;
-        this.props.firebase.deleteRequest(rid);
-        this.getUserInformation();
-        this.getAllRequests();
+        if(window.confirm("Are you sure that you want to delete this request?")) {
+            const rid = document.getElementById("requestInputForm").value;
+            this.props.firebase.deleteRequest(rid);
+            this.getUserInformation();
+            this.getAllRequests();
+        }
     }
 
     deleteFile() {
-        const fid = document.getElementById("fileInputForm").value;
-        this.props.firebase.deleteFile(fid);
-        this.getUserInformation();
+        if(window.confirm("Are you sure that you want to delete this file?")) {
+            const fid = document.getElementById("fileInputForm").value;
+            this.props.firebase.deleteFile(fid);
+            this.getUserInformation();
+        }
     }
 
     getUserRequests(uid) {
