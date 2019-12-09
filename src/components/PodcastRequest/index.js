@@ -60,6 +60,8 @@ class PodcastRequest extends Component {
     render() {
         const { name, description, reqID } = this.state;
         return (
+            <div class="card-bg">
+            <h3>Request a file</h3>
             <form onSubmit={this.onSubmit}>
                 <input
                     name="name"
@@ -93,6 +95,7 @@ class PodcastRequest extends Component {
                     onProgress={this.handleProgress}
                 />
             </form>
+            </div>
         );
     }
 }

@@ -62,6 +62,7 @@ class SignInFormBase extends Component {
             <div className="row d-flex justify-content-center">
             <div className="container-fluid ">
             </div>
+            <br/>
             <div className="card-bg card-bg.smaller" >
             <h1>Sign In</h1>
             <form onSubmit={this.onSubmit}>
