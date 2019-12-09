@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
 import {withAuthorization} from "../Session";
 import NewsletterEditor from '../NewsletterEditor';
-import { Container, Row, Col, Table, InputGroup, InputGroupAddon, Button, Input, Alert } from 'reactstrap';
+
+import { Container, Row, Col, Table, InputGroup, InputGroupAddon, Button, Input } from 'reactstrap';
 import background from "./back.png"
 
 class AdminPage extends Component {
@@ -15,8 +16,8 @@ class AdminPage extends Component {
             userRequest: [],
             userFiles: [],
         };
-    }
 
+    }
     componentDidMount() {
         this.setState({
             loading: false,
@@ -30,16 +31,20 @@ class AdminPage extends Component {
     }
 
     deleteRequest() {
-        const rid = document.getElementById("requestInputForm").value;
-        this.props.firebase.deleteRequest(rid);
-        this.getUserInformation();
-        this.getAllRequests();
+        if(window.confirm("Are you sure that you want to delete this request?")) {
+            const rid = document.getElementById("requestInputForm").value;
+            this.props.firebase.deleteRequest(rid);
+            this.getUserInformation();
+            this.getAllRequests();
+        }
     }
 
     deleteFile() {
-        const fid = document.getElementById("fileInputForm").value;
-        this.props.firebase.deleteFile(fid);
-        this.getUserInformation();
+        if(window.confirm("Are you sure that you want to delete this file?")) {
+            const fid = document.getElementById("fileInputForm").value;
+            this.props.firebase.deleteFile(fid);
+            this.getUserInformation();
+        }
     }
 
     getUserRequests(uid) {
@@ -79,10 +84,19 @@ class AdminPage extends Component {
     }
 
     getAllUsers() {
-        const query = this.props.firebase.getElementsInPath('users');
-        this.setState({
-            users: query,
-        })
+
+        if (this.state.users.length !== 0) {
+            this.setState({
+                users: [],
+            })
+        }
+        else {
+            const query = this.props.firebase.getElementsInPath('users');
+            this.setState({
+                users: query,
+            })
+        }
+
     }
     render() {
 
@@ -183,7 +197,9 @@ class AdminPage extends Component {
                                     <InputGroup>
                                         <Input id="requestInputForm"/>
                                         <InputGroupAddon addonType="append">
-                                            <Button color="danger" onClick={() => { if (window.confirm('Are you sure you wish to delete this request?')) this.deleteRequest()} }>
+
+                                            <Button color="danger" onClick={() => this.deleteRequest()}>
+
                                                 DELETE
                                             </Button>
                                         </InputGroupAddon>
@@ -196,7 +212,9 @@ class AdminPage extends Component {
                                     <InputGroup>
                                         <Input id="fileInputForm"/>
                                         <InputGroupAddon addonType="append">
-                                            <Button color="danger" onClick={() => { if (window.confirm('Are you sure you wish to delete this file?')) this.deleteFile()} }>
+
+                                            <Button color="danger" onClick={() => this.deleteFile()}>
+
                                                 DELETE
                                             </Button>
                                         </InputGroupAddon>
@@ -225,22 +243,24 @@ const UserList = ({ users }) => (
             </tr>
             </thead>
             <tbody>
-                {users.map(user => (
-                    <tr>
-                        <th key={user.uid} >
+
+            {users.map(user => (
+                <tr>
+                    <th key={user.uid} >
                             <span className="badge badge-primary">
                                 {user.uid}
                             </span>
-                        </th>
-                            <td>
-                              <strong></strong> {user.value.email}
-                            </td>
-                            <td>
-                              <strong></strong> {user.value.username}
-                            </td>
+                    </th>
+                    <td>
+                        <strong></strong> {user.value.email}
+                    </td>
+                    <td>
+                        <strong></strong> {user.value.username}
+                    </td>
 
-                    </tr>
-                ))}
+                </tr>
+            ))}
+
             </tbody>
         </Table>
     </ul>
@@ -257,7 +277,9 @@ const RequestList = ({ requests }) => (
             </tr>
             </thead>
             <tbody>
-                {requests.map(request => (
+
+            {requests.map(request => (
+
                 <tr>
                     <th key={request.uid}>
                         <span className="badge badge-primary">
@@ -267,7 +289,9 @@ const RequestList = ({ requests }) => (
                     <th>{request.value.name}</th>
                     <th>{request.value.description}</th>
                 </tr>
-                ))}
+
+            ))}
+
             </tbody>
         </Table>
 
