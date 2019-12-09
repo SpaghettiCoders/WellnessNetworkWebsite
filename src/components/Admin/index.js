@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { withFirebase } from '../Firebase';
 import {withAuthorization} from "../Session";
 import NewsletterEditor from '../NewsletterEditor';
-
 import { Container, Row, Col, Table, InputGroup, InputGroupAddon, Button, Input } from 'reactstrap';
 import background from "./back.png"
 
@@ -65,26 +64,23 @@ class AdminPage extends Component {
         var uid = document.getElementById("userFormInput").value;
         this.getUserRequests(uid);
         this.getUserFiles(uid);
-        if(this.state.userRequest.length == 0 && this.state.userFiles.length == 0) {
-            window.alert("User does not have any information");
-        }
-        else if (this.state.userRequest.length == 0 ) {
-            window.alert("User has 0 requests");
-        }
-        else if (this.state.userFiles.length == 0){
-            window.alert("User has 0 files");
-        }
     }
 
     getAllRequests() {
-        const query = this.props.firebase.getElementsInPath('requests');
-        this.setState({
-            requests: query,
-        })
+        if (this.state.requests.length !== 0) {
+            this.setState({
+                requests: [],
+            })
+        }
+        else {
+            const query = this.props.firebase.getElementsInPath('requests');
+            this.setState({
+                requests: query,
+            })
+        }
     }
 
     getAllUsers() {
-
         if (this.state.users.length !== 0) {
             this.setState({
                 users: [],
@@ -96,7 +92,6 @@ class AdminPage extends Component {
                 users: query,
             })
         }
-
     }
     render() {
 
@@ -197,9 +192,7 @@ class AdminPage extends Component {
                                     <InputGroup>
                                         <Input id="requestInputForm"/>
                                         <InputGroupAddon addonType="append">
-
                                             <Button color="danger" onClick={() => this.deleteRequest()}>
-
                                                 DELETE
                                             </Button>
                                         </InputGroupAddon>
@@ -212,9 +205,7 @@ class AdminPage extends Component {
                                     <InputGroup>
                                         <Input id="fileInputForm"/>
                                         <InputGroupAddon addonType="append">
-
                                             <Button color="danger" onClick={() => this.deleteFile()}>
-
                                                 DELETE
                                             </Button>
                                         </InputGroupAddon>
@@ -243,7 +234,6 @@ const UserList = ({ users }) => (
             </tr>
             </thead>
             <tbody>
-
             {users.map(user => (
                 <tr>
                     <th key={user.uid} >
@@ -260,7 +250,6 @@ const UserList = ({ users }) => (
 
                 </tr>
             ))}
-
             </tbody>
         </Table>
     </ul>
@@ -277,9 +266,7 @@ const RequestList = ({ requests }) => (
             </tr>
             </thead>
             <tbody>
-
             {requests.map(request => (
-
                 <tr>
                     <th key={request.uid}>
                         <span className="badge badge-primary">
@@ -289,9 +276,7 @@ const RequestList = ({ requests }) => (
                     <th>{request.value.name}</th>
                     <th>{request.value.description}</th>
                 </tr>
-
             ))}
-
             </tbody>
         </Table>
 
@@ -322,14 +307,16 @@ const UserRequest = ({requests}) => (
                         <strong>UserID: </strong>
                         {request.value.userID}
                     </li>
+
                 </ul>
             </li>
+
         ))}
     </ul>
 );
 
 const UserFiles = ({files}) => (
-    <ul className="list-group">
+    <ul  className="list-group">
         {files.map(file => (
             <li key={file.uid} className="list-group-item  justify-content-between align-items-center">
                 <span className="badge badge-primary">
