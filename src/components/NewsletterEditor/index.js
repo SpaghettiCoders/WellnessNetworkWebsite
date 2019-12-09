@@ -24,7 +24,7 @@ class NewsletterEditor extends Component {
     render() {
         return (
             <div>
-                <input onClick={this.toggleNewsletterEditor} value={this.state.newsletterButtonText} type="button"/>
+                <input className="btn btn-outline-primary" onClick={this.toggleNewsletterEditor} value={this.state.newsletterButtonText} type="button"/>
                 { !this.state.newsletterIsHidden ? <NewsletterMenu firebase={this.props.firebase} /> : null }
             </div>
         );

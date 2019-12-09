@@ -12,6 +12,7 @@ const SignInPage = () => (
     <div className = "col-centered col-md-12 text-md-center ">
     <h1></h1>
         <h1>SignIn</h1>
+        <br/>
         <SignInForm />
         
     
@@ -43,7 +44,7 @@ class SignInFormBase extends Component {
             .doSignInWithEmailAndPassword(email, password)
             .then(() => {
                 this.setState({ ...INITIAL_STATE });
-                this.props.history.push(ROUTES.HOME);
+                this.props.history.push(ROUTES.ACCOUNT);
             })
             .catch(error => {
                 this.setState({ error });
@@ -58,9 +59,11 @@ class SignInFormBase extends Component {
         const { email, password, error } = this.state;
         const isInvalid = password === '' || email === '';
         return (
-            <div className="container">
-            <div className="card card-1 shadow col-md-6" >
-            <h1>SignIn</h1>
+            <div className="row d-flex justify-content-center">
+            <div className="container-fluid ">
+            </div>
+            <div className="card-bg card-bg.smaller" >
+            <h1>Sign In</h1>
             <form onSubmit={this.onSubmit}>
             <div className="form-group">
                 <input className="form-control" 
@@ -81,7 +84,7 @@ class SignInFormBase extends Component {
                 />
                 </div>
                 <div className="form-group">
-                <button disabled={isInvalid} type="submit" className="btn btn-primary">
+                <button disabled={isInvalid} type="submit" className="button-signin">
                     Sign In
                 </button>
                 </div>

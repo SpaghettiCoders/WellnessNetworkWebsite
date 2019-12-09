@@ -84,7 +84,6 @@ class AdminPage extends Component {
             users: query,
         })
     }
-
     render() {
 
         const sectionStyle = {
@@ -211,7 +210,6 @@ class AdminPage extends Component {
                         <NewsletterEditor/>
                     </div>
                 </div>
-            </div>
         );
     }
 }
